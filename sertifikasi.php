@@ -1,6 +1,6 @@
 <?php 
-  include('server/upload.php');
-  include('server/server.php');
+  include('upload.php');
+  include('server.php');
  ?>
 
 <!DOCTYPE html>
@@ -97,10 +97,10 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-sm-12">
-                  <table id="dataTable" class="table table-bordered table-striped dataTable" role="grid" style="width: 100%" width="100%" cellspacing="0">
+                <div class="col-sm-12"  style = "font-size: 14px" >
+                  <table id="dataTable" class="table table-bordered table-striped dataTable" role="grid" style="width: "100%" width="100%" cellspacing="0"">
                     <thead>
-                      <tr role="row">
+                      <tr role="row" style="white-space: nowrap">
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1" width="50px" style="text-align: center;">No</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">NIP</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Nama</th>
@@ -137,7 +137,7 @@
                         while($row1 = mysqli_fetch_assoc($query2)):
                       ?>
                       <tr class="odd" role="row">
-                        <td><?php echo $row1["id"]; ?></td>
+                        <td><?php echo $row1["no"]; ?></td>
                         <td><?php echo $row1["nip"]; ?></td>
                         <td><?php echo $row1["nama"]; ?></td>
                         <td><?php echo $row1["jabatan"]; ?></td>
@@ -147,7 +147,7 @@
                         <td><?php echo $row1["pelaksana"]; ?></td>
                         <td><?php echo $row1["no sertifikasi"]; ?></td>
                         <td><?php echo $row1["masa berlaku"]; ?></td>
-                        <td><?php echo $row1["sd"]; ?></td>
+                        <td><?php echo $row1["sampai dengan"]; ?></td>
                         <td><?php echo $row1["keterangan"]; ?></td>
                       </tr>
                       <?php endwhile; ?>
