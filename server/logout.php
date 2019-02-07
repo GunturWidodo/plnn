@@ -4,5 +4,5 @@
 	unset($_SESSION["penguji"]);
 	unset($_SESSION["login_user"]);
 	session_destroy();
-	header('location: login.php');
+	header('location: ../login.php');
 ?>	
