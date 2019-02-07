@@ -1,6 +1,6 @@
 <?php 
-  include('upload.php');
-  include('server.php');
+  include('server/upload.php');
+  include('server/server.php');
  ?>
 
 <!DOCTYPE html>

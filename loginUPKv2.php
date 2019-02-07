@@ -21,7 +21,7 @@
   </nav>
   </div>
 	<div class="jumbotron">
-		<h1>Selamat Datang !</h1>
+		<h1 style="color: black;">Selamat Datang !</h1>
 	</div>
 
 	<div>

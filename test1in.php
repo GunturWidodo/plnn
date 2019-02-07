@@ -13,12 +13,7 @@
 		$query = mysqli_query($db, $sql);
 
 		while ($row = mysqli_fetch_assoc($query)) {
-			if ($row['nama']==0){
-				echo "yas";
-			}
-			else{
-				echo "no";
-			}
+			echo $row[nama];
 		}
 	 ?>
 </form>

@@ -1,5 +1,5 @@
 <?php  
-include('serverlogin.php');
+include('server/serverlogin.php');
   if (!isset($_SESSION["admin"])) {
     header('location: login.php');
   }
@@ -80,7 +80,7 @@ include('serverlogin.php');
                   <div class="mr-5">Sertifikai Pegawai</div>
                 </div>
                 <div class="card-footer text-white clearfix small z-1">
-                  <img src="sertifikasi.png" alt="sertifikasi" height="100px" width="100px" style="margin-left: 100px;">
+                  <img src="images/sertifikasi.png" alt="sertifikasi" height="100px" width="100px" style="margin-left: 100px;">
                 </div>
               </div>
             </a>
@@ -92,7 +92,7 @@ include('serverlogin.php');
                   <div class="mr-5">Penilaian UPK</div>
                 </div>
                 <div class="card-footer text-white clearfix small z-1">
-                  <img src="akun.png" alt="sertifikasi" height="100px" width="100px" style="margin-left: 100px;">
+                  <img src="images/akun.png" alt="sertifikasi" height="100px" width="100px" style="margin-left: 100px;">
                 </div>
               </div>
             </a>

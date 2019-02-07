@@ -1,8 +1,5 @@
 <?php
-include ('serverbio.php');  
-if (!isset($_SESSION["user"])) {
-    header('location: login.php');
-  }
+include ('server/serverbio.php');  
 ?>
 
 <!DOCTYPE html>
@@ -29,12 +26,12 @@ if (!isset($_SESSION["user"])) {
   </nav>
   </div>
   <div class="jumbotron jumbotron-fluid">
-    <h2>Profile Pendaftar UPK</h2>
+    <h2 style="color: black;">Profile Pendaftar UPK</h2>
   </div>
 <div class="row">
   <div class="col-sm-3">
     <div class="container" id="con1">
-      <img src="avatar.png" alt="Avatar" class="img-responsive" id="ava">
+      <img src="images/avatar.png" alt="Avatar" class="img-responsive" id="ava">
       <div class="d-flex justify-content-center">
         <button type="button" class="btn btn-link">Logout</button>
       </div>

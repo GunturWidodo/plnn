@@ -34,7 +34,7 @@
   </nav>
 </div>
   <div class="jumbotron jumbotron-fluid">
-    <h2>Penilaian UPK</h2>
+    <h2 style="color: black;">Penilaian UPK</h2>
   </div>
 <div class="container">
   <div class="row">
