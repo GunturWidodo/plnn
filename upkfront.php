@@ -1,4 +1,9 @@
-<?php  ?>
+<?php 
+include('server/serverlogin.php');
+  if (!isset($_SESSION["admin"])) {
+    header('location: login.php');
+  }
+ ?>
 
 <!DOCTYPE html>
 <html>
@@ -27,7 +32,7 @@
   <button type="button" id="sidebarCollapse" class="btn btn-info">
     <i class="fas fa-align-left"></i>
   </button>
-        <a class="btn btn-warning ml-auto" href="login.php" role="button" style="color: #008C9E;">Logout</a>          
+        <a class="btn btn-warning ml-auto" href="server/logout.php" role="button" style="color: #008C9E;">Logout</a>          
 </nav>
 </div>
 <div id="wrapper">
@@ -74,13 +79,13 @@
   <div id="content-wrapper">
     <div class="container-fluid">
       <div class="pageInfo">
-        <ol class="breadcrumb">
+        <ol class="breadcrumb shadow-nohover">
           <li class="breadcrumb-item"><a href="admin.php">Admin</a></li>
           <li class="breadcrumb-item">Info UPK</li>
         </ol>
         <div class="row">
           <div class="col-xl-3 col-sm-6 col-mb-3">
-            <div class="card text-white bg-primary o-hidden h-100">
+            <div class="card text-white bg-primary o-hidden h-100 shadow-nohover">
               <div class="card-body">
                 <div class="mr-5">Jumlah Peserta UPK: </div>
               </div>

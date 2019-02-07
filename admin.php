@@ -32,7 +32,7 @@ include('server/serverlogin.php');
   <button type="button" id="sidebarCollapse" class="btn btn-info">
     <i class="fas fa-align-left"></i>
   </button>
-        <a class="btn btn-warning ml-auto" href="logout.php" role="button" style="color: #008C9E;">Logout</a>          
+        <a class="btn btn-warning ml-auto" href="server/logout.php" role="button" style="color: #008C9E;">Logout</a>          
 </nav>
 </div>
 <div id="wrapper">
@@ -69,7 +69,7 @@ include('server/serverlogin.php');
   <div id="content-wrapper">
     <div class="container-fluid">
       <div class="pageInfo">
-        <ol class="breadcrumb">
+        <ol class="breadcrumb shadow-nohover">
           <li class="breadcrumb-item">Admin</li>
         </ol>
         <div class="row" style="margin-left: 30px;">

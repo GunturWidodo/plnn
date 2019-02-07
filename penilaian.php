@@ -30,7 +30,7 @@
 <div id="nav">
     <nav class="navbar navbar-expand-sm navbar-custom">
       <h3 style="color: #fff;">Login Sebagai Penilai</h3>
-      <a class="btn btn-warning ml-auto" href="logout.php" role="button" style="color: #008C9E;">Logout</a>          
+      <a class="btn btn-warning ml-auto" href="server/logout.php" role="button" style="color: #008C9E;">Logout</a>          
   </nav>
 </div>
   <div class="jumbotron jumbotron-fluid">
@@ -84,6 +84,11 @@
         </div>
         </div>
         <br>
+        <div class="col-7">
+          <label for="kategory">Kategori UPK: </label>
+          <input type="text" maxlength="1" name="kategori" placeholder="" required class="form-control" value="" id="kategori" style="text-transform: uppercase;" />
+        </div>
+        <br>
       </form>
       <button type="submit" class="btn btn-success" onclick="getVal()">Submit</button>
     </div>
@@ -91,6 +96,7 @@
       <h4>Tabel Penilaian</h4>
       <div class="card-body">
           <div id="print" class="table-responsive">
+            <p style="margin-bottom:-1px; text-transform: uppercase;" id="setKategori"></p>
             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
               <div class="row">
                 <div class="col-sm-12">
@@ -108,10 +114,10 @@
                         <th class="sortting_asc align-middle" tabindex="0" rowspan="1" colspan="2" style="text-align: center;">Kesimpulan</th>
                       </tr>
                       <tr>
-                        <th class="align-middle" width="30px" id="a">A</th>
-                        <th class="align-middle" width="30px" id="b">B</th>
-                        <th class="align-middle" width="30px" id="c">C</th>
-                        <th class="align-middle" width="30px" id="d">D</th>
+                        <th class="align-middle" id="a">A</th>
+                        <th class="align-middle" id="b">B</th>
+                        <th class="align-middle" id="c">C</th>
+                        <th class="align-middle" id="d">D</th>
                         <th>Nilai Total</th>
                         <th class="align-middle">Presentasi</th>
                       </tr>
@@ -119,18 +125,18 @@
                     <tbody style="text-align: center;">
                       <tr class="odd" role="row">
                         <td>1</td>
-                        <td>NamaTest</td>
-                        <td>DB123</td>
-                        <td>Database</td>
-                        <td>Database</td>
-                        <td>Database</td>
-                        <td id="kolA"> </td>
-                        <td id="kolB"> </td>
-                        <td id="kolC"> </td>
-                        <td id="kolD"> </td>
-                        <td>Database</td>
-                        <td id="nilai"> </td>
-                        <td id="pres">-</td>
+                        <td style="text-align: center;">NamaTest</td>
+                        <td style="text-align: center;">DB123</td>
+                        <td style="text-align: center;">Database</td>
+                        <td style="text-align: center;">Database</td>
+                        <td style="text-align: center;">Database</td>
+                        <td id="kolA" style="text-align: center;"> </td>
+                        <td id="kolB" style="text-align: center;"> </td>
+                        <td id="kolC" style="text-align: center;"> </td>
+                        <td id="kolD" style="text-align: center;"> </td>
+                        <td style="text-align: center;">Database</td>
+                        <td id="nilai" style="text-align: center;"> </td>
+                        <td id="pres" style="text-align: center;">-</td>
                       </tr>
                     </tbody>
                   </table>
@@ -155,8 +161,13 @@
     document.getElementById("kolC").innerHTML = nC;
     var nD = Number(document.getElementById("nd").value);
     document.getElementById("kolD").innerHTML = nD;
+
+    var kat = document.getElementById("kategori").value;
+    document.getElementById("setKategori").innerHTML = 'Kategori UPK: ' + kat;
+
     var total = nA+nB+nC+nD;
     document.getElementById("nilai").innerHTML = total;
+
     if (total < 75) {
       document.getElementById("pres").innerHTML = "Ya";
     }

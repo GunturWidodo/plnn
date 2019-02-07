@@ -1,6 +1,10 @@
 <?php 
-  include('upload.php');
-  include('server.php');
+  include('server/upload.php');
+  include('server/server.php');
+  include('server/serverlogin.php');
+  if (!isset($_SESSION["admin"])) {
+    header('location: login.php');
+  }
  ?>
 
 <!DOCTYPE html>
@@ -30,7 +34,7 @@
   <button type="button" id="sidebarCollapse" class="btn btn-info">
     <i class="fas fa-align-left"></i>
   </button>
-        <a class="btn btn-warning ml-auto" href="login.php" role="button" style="color: #008C9E;">Logout</a>          
+        <a class="btn btn-warning ml-auto" href="server/logout.php" role="button" style="color: #008C9E;">Logout</a>          
 </nav>
 </div>
 <div id="wrapper">
@@ -73,7 +77,7 @@
   <div id="content-wrapper">
     <div class="container-fluid">
       <div class="pageInfo">
-        <ol class="breadcrumb">
+        <ol class="breadcrumb shadow-nohover">
           <li class="breadcrumb-item"><a href="admin.php">Admin</a></li>
           <li class="breadcrumb-item"><a href="sertiffront.php">Info Sertifikasi</a></li>
           <li class="breadcrumb-item">Sertifikasi</li>
@@ -97,10 +101,10 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-sm-12"  style = "font-size: 14px" >
-                  <table id="dataTable" class="table table-bordered table-striped dataTable" role="grid" style="width: "100%" width="100%" cellspacing="0"">
+                <div class="col-sm-12">
+                  <table id="dataTable" class="table table-bordered table-striped dataTable" role="grid" style="width: 100%" width="100%" cellspacing="0">
                     <thead>
-                      <tr role="row" style="white-space: nowrap">
+                      <tr role="row">
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1" width="50px" style="text-align: center;">No</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">NIP</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Nama</th>
@@ -137,7 +141,7 @@
                         while($row1 = mysqli_fetch_assoc($query2)):
                       ?>
                       <tr class="odd" role="row">
-                        <td><?php echo $row1["no"]; ?></td>
+                        <td><?php echo $row1["id"]; ?></td>
                         <td><?php echo $row1["nip"]; ?></td>
                         <td><?php echo $row1["nama"]; ?></td>
                         <td><?php echo $row1["jabatan"]; ?></td>
@@ -147,7 +151,7 @@
                         <td><?php echo $row1["pelaksana"]; ?></td>
                         <td><?php echo $row1["no sertifikasi"]; ?></td>
                         <td><?php echo $row1["masa berlaku"]; ?></td>
-                        <td><?php echo $row1["sampai dengan"]; ?></td>
+                        <td><?php echo $row1["sd"]; ?></td>
                         <td><?php echo $row1["keterangan"]; ?></td>
                       </tr>
                       <?php endwhile; ?>
@@ -157,7 +161,7 @@
                     <ul class="pagination">
                       <li class="page-item disabled"><a class="page-link" href="#">Prev</a></li>
                       <?php 
-                        for ($i=1; $i <= $pages; $i++) { ?>
+                        for ($i=1; $i < $pages; $i++) { ?>
                           <li class="page-item"><a class="page-link" href="?halaman=<?php echo $i; ?>"><?php echo $i; ?></a></li>
                       <?php } ?>
                       <li class="page-item"><a class="page-link" href="#">Next</a></li>

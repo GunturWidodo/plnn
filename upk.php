@@ -1,5 +1,9 @@
 <?php 
-include('server/server.php')
+include('server/server.php');
+include('server/serverlogin.php');
+  if (!isset($_SESSION["admin"])) {
+    header('location: login.php');
+  }
  ?>
 
 <!DOCTYPE html>
@@ -29,7 +33,7 @@ include('server/server.php')
     <button type="button" id="sidebarCollapse" class="btn btn-info">
       <i class="fas fa-align-left"></i>
     </button>
-    <a class="btn btn-warning ml-auto" href="login.php" role="button" style="color: #008C9E;">Logout</a>          
+    <a class="btn btn-warning ml-auto" href="server/logout.php" role="button" style="color: #008C9E;">Logout</a>          
   </nav>
 </div>
 <div id="wrapper">
@@ -76,7 +80,7 @@ include('server/server.php')
   <div id="content-wrapper">
     <div class="container-fluid">
       <div class="pageInfo">
-        <ol class="breadcrumb">
+        <ol class="breadcrumb shadow-nohover">
           <li class="breadcrumb-item"><a href="admin.php">Admin</a></li>
           <li class="breadcrumb-item active"><a href="upkfront.php">Info UPK</a></li>
           <li class="breadcrumb-item active">Database UPK</li>
@@ -109,7 +113,7 @@ include('server/server.php')
                         <th class="sortting_asc align-middle" tabindex="0" rowspan="2" colspan="1">Grade</th>
                         <th class="sortting_asc align-middle" tabindex="0" rowspan="1" colspan="4" width="100px" style="text-align: center;">Penilaian & kontribusi</th>
                         <th class="sortting_asc align-middle" tabindex="0" rowspan="2" colspan="1" style="text-align: center;">Bobot Kompetensi</th>
-                        <th class="sortting_asc align-middle" tabindex="0" rowspan="1" colspan="3" style="text-align: center;">Kesimpulan</th>
+                        <th class="sortting_asc align-middle" tabindex="0" rowspan="1" colspan="2" style="text-align: center;">Kesimpulan</th>
                       </tr>
                       <tr>
                         <th width="30px">A</th>
@@ -118,12 +122,11 @@ include('server/server.php')
                         <th width="30px">D</th>
                         <th style="text-align: center;">Nilai Total</th>
                         <th>Presentasi</th>
-                        <th>Tidak</th>
                       </tr>
                     </thead>
                     <tbody style="text-align: center;">
                       <?php
-                        $query1 = "SELECT * FROM upk";
+                        $query1 = "SELECT * FROM users";
                         $result1 = mysqli_query($db, $query1);
                         if (!$result1) {
                           printf("Error: %s\n", mysqli_error($db));
@@ -133,7 +136,7 @@ include('server/server.php')
                         $halaman = 20;
                         $page = isset($_GET['halaman'])? (int)$_GET["halaman"]:1;
                         $mulai = ($page>1) ? ($page * $halaman) - $halaman : 0;
-                        $query2 = mysqli_query($db, "SELECT * FROM upk LIMIT $mulai, $halaman");
+                        $query2 = mysqli_query($db, "SELECT * FROM users LIMIT $mulai, $halaman");
                         $sql = mysqli_query($db, $query1);
                         $total = mysqli_num_rows($sql);
                         $pages = ceil($total/$halaman);
@@ -155,7 +158,6 @@ include('server/server.php')
                         <td><?php echo $row1["bobot"]; ?></td>
                         <td><?php echo $row1["nilai"]; ?></td>
                         <td><?php echo $row1["presentasi"]; ?></td>
-                        <td><?php echo $row1["tidak"]; ?></td>
                       </tr>
                       <?php endwhile; ?>
                     </tbody>

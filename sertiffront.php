@@ -1,4 +1,9 @@
-<?php  ?>
+<?php
+  include('server/serverlogin.php');
+  if (!isset($_SESSION["admin"])) {
+    header('location: login.php');
+  }
+?>
 
 <!DOCTYPE html>
 <html>
@@ -71,7 +76,7 @@
   <div id="content-wrapper">
     <div class="container-fluid">
       <div class="pageInfo">
-        <ol class="breadcrumb">
+        <ol class="breadcrumb shadow-nohover">
           <li class="breadcrumb-item"><a href="admin.php">Admin</a></li>
           <li class="breadcrumb-item">Info Sertifikasi</li>
         </ol>

@@ -1,5 +1,8 @@
 <?php 
-  include('server/server.php')
+  include('server/serverlogin.php');
+  if (!isset($_SESSION["admin"])) {
+    header('location: login.php');
+  }
  ?>
 
 <!DOCTYPE html>
@@ -29,7 +32,7 @@
   <button type="button" id="sidebarCollapse" class="btn btn-info">
     <i class="fas fa-align-left"></i>
   </button>
-        <a class="btn btn-warning ml-auto" href="login.php" role="button" style="color: #008C9E;">Logout</a>          
+        <a class="btn btn-warning ml-auto" href="server/logout.php" role="button" style="color: #008C9E;">Logout</a>          
 </nav>
 </div>
 <div id="wrapper">
@@ -76,7 +79,7 @@
   <div id="content-wrapper">
     <div class="container-fluid">
       <div class="pageInfo">
-        <ol class="breadcrumb">
+        <ol class="breadcrumb shadow-nohover">
           <li class="breadcrumb-item"><a href="admin.php">Admin</a></li>
           <li class="breadcrumb-item active"><a href="upkfront.php">Info UPK</a></li>
           <li class="breadcrumb-item active">Rekap Pendaftar</li>
@@ -95,7 +98,7 @@
                 <div id="dataTable_filter" class="dataTables_filter" style="margin-left: 20px; margin-bottom: 10px">
                   <label>Search:</label>
                   <input class="form-control form-control-sm" type="search" placeholder="" aria-controls="dataTable">
-                  <a class="btn btn-primary ml-auto" href="login.php" role="button" style="margin-top: 5px">Cari</a>
+                  <a class="btn btn-primary" href="login.php" role="button" style="margin-top: 5px">Cari</a>
                 </div>
               </div>
               <div class="row">
@@ -125,7 +128,8 @@
                     </thead>
                     <tbody style="text-align: center;">
                       <?php
-                        $query1 = "SELECT * FROM akun";
+                        include('server/server.php');
+                        $query1 = "SELECT * FROM users";
                         $result1 = mysqli_query($db, $query1);
                         if (!$result1) {
                           printf("Error: %s\n", mysqli_error($db));
@@ -135,7 +139,7 @@
                         $halaman = 20;
                         $page = isset($_GET['halaman'])? (int)$_GET["halaman"]:1;
                         $mulai = ($page>1) ? ($page * $halaman) - $halaman : 0;
-                        $query2 = mysqli_query($db, "SELECT * FROM akun LIMIT $mulai, $halaman");
+                        $query2 = mysqli_query($db, "SELECT * FROM users LIMIT $mulai, $halaman");
                         $sql = mysqli_query($db, $query1);
                         $total = mysqli_num_rows($sql);
                         $pages = ceil($total/$halaman);
