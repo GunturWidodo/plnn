@@ -157,7 +157,7 @@
                     <ul class="pagination">
                       <li class="page-item disabled"><a class="page-link" href="#">Prev</a></li>
                       <?php 
-                        for ($i=1; $i < $pages; $i++) { ?>
+                        for ($i=1; $i <= $pages; $i++) { ?>
                           <li class="page-item"><a class="page-link" href="?halaman=<?php echo $i; ?>"><?php echo $i; ?></a></li>
                       <?php } ?>
                       <li class="page-item"><a class="page-link" href="#">Next</a></li>
