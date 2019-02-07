@@ -159,12 +159,17 @@
                   </table>
                   <div class="page">
                     <ul class="pagination">
-                      <li class="page-item disabled"><a class="page-link" href="#">Prev</a></li>
-                      <?php 
-                        for ($i=1; $i < $pages; $i++) { ?>
+                      <li class="page-item"><a class="page-link" href="?halaman=<?php echo $page-1; /*echo if (page=1) {page=page;}*/ ?>">Prev</a></li>
+                      <?php
+                          for ($i=max($page-2, 1); $i<max(1, min($pages,$page)); $i++) { ?>
                           <li class="page-item"><a class="page-link" href="?halaman=<?php echo $i; ?>"><?php echo $i; ?></a></li>
                       <?php } ?>
-                      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                      <li class="page-item active"><a class="page-link" href="?halaman=<?php echo $i; ?>"><?php echo $page; ?></a></li>
+                      <?php
+                          for ($i=max($page+1, 1); $i<=max(1, min($pages,$page+3)); $i++) { ?>
+                          <li class="page-item"><a class="page-link" href="?halaman=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                      <?php } ?>
+                      <li class="page-item"><a class="page-link" href="?halaman=<?php echo $page+1; ?>">Next</a></li>
                     </ul>
                   </div>
                 </div>
