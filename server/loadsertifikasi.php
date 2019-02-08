@@ -23,6 +23,9 @@
 		$sql = mysqli_query($db, $query1);
 		$total = mysqli_num_rows($sql);
 		$pages = ceil($total/$halaman);
+		if ($pages = 1) {
+			$page = 1;
+		}
 		$no = $mulai+1;
 	}
 
