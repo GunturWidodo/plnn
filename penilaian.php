@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Tabel Hasil Penilaian UPK</title>
+  <title>Tabel Penilaian UPK</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="index.css">
 
@@ -64,30 +64,43 @@
       <form>
         <h4>Nilai</h4>
         <div class="row">
-        <div class="col-4">
-          <label for="nilaiA">A:</label>
-          <input type="text" maxlength="2" name="nilaiA" placeholder="" required class="form-control" value="" id="na" />
-        </div>
-        <div class="col-4">
-          <label for="nilaiB">B:</label>
-          <input type="text" maxlength="2" name="nilaiB" placeholder="" required class="form-control" value="" id="nb" />
-        </div>
+          <div class="col-4">
+            <label for="kategory" style="font-size: 12px; text-align: center">Kategori UPK: </label>
+            <input type="text" maxlength="1" name="kategori" placeholder="" required class="form-control" value="" id="kategori" style="text-transform: uppercase;" />
+          </div>
+          <div class="col-4">
+            <label for="bobot" style="font-size: 12px; text-align: center">Bobot Kompetensi</label>
+            <input type="text" maxlength="2" name="bobot" placeholder="" required class="form-control" value="" id="bobot"/>
+          </div>
         </div>
         <div class="row">
-        <div class="col-4">
-          <label for="nilaiC">C</label>
-          <input type="text" maxlength="2" name="nilaiC" placeholder="" required class="form-control" value="" id="nc"/>
-        </div>
-        <div class="col-4">
-          <label for="nilaiD">D</label>
-          <input type="text" maxlength="2" name="nilaiD" placeholder="" required class="form-control" value="" id="nd"/>
-        </div>
+          <div class="col-8">
+            <label for="bobot" style="font-size: 12px; text-align: center">Bobot Lulus Seleksi Administrasi</label>
+            <input type="text" maxlength="2" name="bobotL" placeholder="" required class="form-control" value="" id="bobotL"/>
+          </div>
         </div>
         <br>
-        <div class="col-7">
-          <label for="kategory">Kategori UPK: </label>
-          <input type="text" maxlength="1" name="kategori" placeholder="" required class="form-control" value="" id="kategori" style="text-transform: uppercase;" />
+        <div class="row">
+          <div class="col-4">
+            <label for="nilaiA">A:</label>
+            <input type="text" maxlength="2" name="nilaiA" placeholder="" required class="form-control" value="" id="na" />
+          </div>
+          <div class="col-4">
+            <label for="nilaiB">B:</label>
+            <input type="text" maxlength="2" name="nilaiB" placeholder="" required class="form-control" value="" id="nb" />
+          </div>
         </div>
+        <div class="row">
+          <div class="col-4">
+            <label for="nilaiC">C:</label>
+            <input type="text" maxlength="2" name="nilaiC" placeholder="" required class="form-control" value="" id="nc"/>
+          </div>
+          <div class="col-4">
+            <label for="nilaiD">D:</label>
+            <input type="text" maxlength="2" name="nilaiD" placeholder="" required class="form-control" value="" id="nd"/>
+          </div>
+        </div>
+        
         <br>
       </form>
       <button type="submit" class="btn btn-success" onclick="getVal()">Submit</button>
@@ -96,22 +109,27 @@
       <h4>Tabel Penilaian</h4>
       <div class="card-body">
           <div id="print" class="table-responsive">
-            <p style="margin-bottom:-1px; text-transform: uppercase;" id="setKategori"></p>
+            <!--<p style="margin-bottom:-1px; text-transform: uppercase;" id="setKategori"></p>-->
             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
               <div class="row">
                 <div class="col-sm-12">
-                  <table id="tblData" class="table table-bordered dataTable" role="grid" style="width: 100%" width="100%" cellspacing="0">
-                    <thead style="text-align: center;">
+                  <table id="tblData" class="table table-bordered dataTable" role="grid" style="width: 100%" width="100%" cellspacing="0">    <p style="margin-bottom:-1px; text-transform: uppercase;" id="setKategori"></p>
+                    <thead style="text-align: center; font-size: 12px;">
                       <tr role="row">
-                        <th class="sortting_asc align-middle" tabindex="0" rowspan="2" colspan="1" width="50px" style="text-align: center;">No</th>
-                        <th class="sortting_asc align-middle" tabindex="0" rowspan="2" colspan="1">Nama</th>
-                        <th class="sortting_asc align-middle" tabindex="0" rowspan="2" colspan="1">NIP</th>
-                        <th class="sortting_asc align-middle" tabindex="0" rowspan="2" colspan="1">Unit</th>
-                        <th class="sortting_asc align-middle" tabindex="0" rowspan="2" colspan="1">Jabatan</th>
-                        <th class="sortting_asc align-middle" tabindex="0" rowspan="2" colspan="1">Grade</th>
-                        <th class="sortting_asc align-middle" tabindex="0" rowspan="1" colspan="4" width="100px" style="text-align: center;">Penilaian & kontribusi</th>
-                        <th class="sortting_asc align-middle" tabindex="0" rowspan="2" colspan="1" style="text-align: center;">Bobot Kompetensi</th>
+                        <th class="sortting_asc align-middle" tabindex="0" rowspan="3" colspan="1" width="50px" style="text-align: center;">No</th>
+                        <th class="sortting_asc align-middle" tabindex="0" rowspan="3" colspan="1">Nama</th>
+                        <th class="sortting_asc align-middle" tabindex="0" rowspan="3" colspan="1">NIP</th>
+                        <th class="sortting_asc align-middle" tabindex="0" rowspan="3" colspan="1">Unit</th>
+                        <th class="sortting_asc align-middle" tabindex="0" rowspan="3" colspan="1">Jabatan</th>
+                        <th class="sortting_asc align-middle" tabindex="0" rowspan="3" colspan="1">Grade</th>
+                        <th class="sortting_asc align-middle" tabindex="0" rowspan="3" colspan="1" style="text-align: center;">Bobot Lulus Seleksi Administrasi</th>
+                        <th class="sortting_asc align-middle" tabindex="0" rowspan="1" colspan="4" style="text-align: center;">Hard Competence</th>
+                        <th class="sortting_asc align-middle" tabindex="0" rowspan="3" colspan="1" style="text-align: center;">Bobot Kompetensi</th>
                         <th class="sortting_asc align-middle" tabindex="0" rowspan="1" colspan="2" style="text-align: center;">Kesimpulan</th>
+                      </tr>
+                      <tr>
+                        <th colspan="4">Penilaian Makalah & Kontribusi</th>
+                        <th colspan="2">Penilaian Hard + Soft</th>
                       </tr>
                       <tr>
                         <th class="align-middle" id="a">A</th>
@@ -122,7 +140,7 @@
                         <th class="align-middle">Presentasi</th>
                       </tr>
                     </thead>
-                    <tbody style="text-align: center;">
+                    <tbody style="text-align: center; font-size: 12px;">
                       <tr class="odd" role="row">
                         <td>1</td>
                         <td style="text-align: center;">NamaTest</td>
@@ -130,11 +148,12 @@
                         <td style="text-align: center;">Database</td>
                         <td style="text-align: center;">Database</td>
                         <td style="text-align: center;">Database</td>
+                        <td id="bobotLulus" style="text-align: center;"> </td>
                         <td id="kolA" style="text-align: center;"> </td>
                         <td id="kolB" style="text-align: center;"> </td>
                         <td id="kolC" style="text-align: center;"> </td>
                         <td id="kolD" style="text-align: center;"> </td>
-                        <td style="text-align: center;">Database</td>
+                        <td id="setBobot" style="text-align: center;"></td>
                         <td id="nilai" style="text-align: center;"> </td>
                         <td id="pres" style="text-align: center;">-</td>
                       </tr>
@@ -153,19 +172,54 @@
 </div>
 <script type="text/javascript">
   function getVal(){
+    var seP = Number("10")
     var nA = Number(document.getElementById("na").value);
+    if (nA >= "10"){
+      document.getElementById("kolA").innerHTML = seP;  
+    }
+    else{
     document.getElementById("kolA").innerHTML = nA;
+    }
     var nB = Number(document.getElementById("nb").value);
+    if (nB >= "10"){
+      document.getElementById("kolB").innerHTML = seP;  
+    }
+    else{
     document.getElementById("kolB").innerHTML = nB;
-    var nC = Number(document.getElementById("nc").value);
-    document.getElementById("kolC").innerHTML = nC;
-    var nD = Number(document.getElementById("nd").value);
-    document.getElementById("kolD").innerHTML = nD;
+    }
 
+    var nC = Number(document.getElementById("nc").value);
+    if (nC >= "10"){
+      document.getElementById("kolC").innerHTML = seP;  
+    }
+    else{
+    document.getElementById("kolC").innerHTML = nC;
+    }
+
+    var nD = Number(document.getElementById("nd").value);
+    if (nD >= "10"){
+      document.getElementById("kolD").innerHTML = seP;  
+    }
+    else{
+    document.getElementById("kolD").innerHTML = nD;
+    }
+    
+    var bob = Number(document.getElementById("bobot").value);
+
+    document.getElementById("setBobot").innerHTML = bob;
+
+    var bobL = Number(document.getElementById("bobotL").value);
+    var duaP = Number("20");
+    if (bobL >= "20") {
+      document.getElementById("bobotLulus").innerHTML = duaP;
+    }
+    else {
+      document.getElementById("bobotLulus").innerHTML = bobL;
+    }
     var kat = document.getElementById("kategori").value;
     document.getElementById("setKategori").innerHTML = 'Kategori UPK: ' + kat;
 
-    var total = nA+nB+nC+nD;
+    var total = bobL+nA+nB+nC+nD+bob;
     document.getElementById("nilai").innerHTML = total;
 
     if (total < 75) {
@@ -192,7 +246,6 @@
     var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
     window.location.href = uri + base64(format(template, ctx))
   }
-
 
 })()
 </script>
