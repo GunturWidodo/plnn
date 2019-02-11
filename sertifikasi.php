@@ -153,7 +153,7 @@
                       for($i = 1; $i <= $pages; $i++){
                         if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $pages)){
                           if($i==$pages && $page <= $pages-5) echo '<li class="page-item disabled"><a class="page-link" href="">...</a></li>';
-                          if ($i == $page) echo '<li class="page-item"><a class="page-link" href="?halaman='.$i.'">'.$i.'</a></li>';
+                          if ($i == $page) echo '<li class="page-item active"><a class="page-link" href="?halaman='.$i.'">'.$i.'</a></li>';
                           else echo '<li class="page-item"><a class="page-link" href="?halaman='.$i.'">'.$i.'</a></li>';
                           if($i==1 && $page >= 6) echo '<li class="page-item disabled"><a class="page-link" href="">...</a></li>';
                         }
