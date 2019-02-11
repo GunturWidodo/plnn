@@ -122,25 +122,10 @@
                       </tr>
                     </thead>
                     <tbody style="text-align: center;">
-                      <?php
-                        $query1 = "SELECT * FROM sertifikasi";
-                        $result1 = mysqli_query($db, $query1);
-                        if (!$result1) {
-                          printf("Error: %s\n", mysqli_error($db));
-                          exit();
-                        }
-
-                        $halaman = 20;
-                        $page = isset($_GET['halaman'])? (int)$_GET["halaman"]:1;
-                        $mulai = ($page>1) ? ($page * $halaman) - $halaman : 0;
-                        $query2 = mysqli_query($db, "SELECT * FROM sertifikasi LIMIT $mulai, $halaman");
-                        $sql = mysqli_query($db, $query1);
-                        $total = mysqli_num_rows($sql);
-                        $pages = ceil($total/$halaman);
-                        $no = $mulai+1;
-
-                        while($row1 = mysqli_fetch_assoc($query2)):
-                      ?>
+<?php                       
+                      include('loadsertifikasi.php');
+                      while($row1 = mysqli_fetch_assoc($query2)):
+?>
                       <tr class="odd" role="row">
                         <td><?php echo $row1["id"]; ?></td>
                         <td><?php echo $row1["nip"]; ?></td>
@@ -164,8 +149,7 @@
                       if($page > 1){
                         echo '<li class="page-item"><a class="page-link" href="?halaman='.($page-1).'">Prev</a></li>';
                       }
-?>
-<?php 
+
                       for($i = 1; $i <= $pages; $i++){
                         if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $pages)){
                           if($i==$pages && $page <= $pages-5) echo '<li class="page-item disabled"><a class="page-link" href="">...</a></li>';
@@ -174,8 +158,7 @@
                           if($i==1 && $page >= 6) echo '<li class="page-item disabled"><a class="page-link" href="">...</a></li>';
                         }
                       }
-?>
-<?php 
+ 
                       if($page < $pages){
                         echo '<li class="page-item"><a class="page-link" href="?halaman='.($page+1).'">Next</a></li>';
                       }
