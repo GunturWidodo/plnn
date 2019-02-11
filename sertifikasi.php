@@ -5,7 +5,6 @@
   if (!isset($_SESSION["admin"])) {
     header('location: login.php');
   }
-  $searchquery = "";
  ?>
 
 <!DOCTYPE html>
@@ -98,36 +97,22 @@
               <div class="row">
                 <div id="dataTable_filter" class="dataTables_filter" style="margin-left: 20px; margin-bottom: 10px">
                   <label>Search:</label>
-                  <?php 
-                    if (isset($_GET['search'])) {
-                      $searchquery=$_GET['search'];
-                    }
-                  ?>
-                  <script type="text/javascript">
-                    document.onkeydown=function(evt){
-                      var keyCode = evt ? (evt.which ? evt.which : evt.keyCode) : event.keyCode;
-                      if (keyCode == 13) {
-                        document.formsearch.submit();
-                      }
-                    }
-                  </script>
-                  <form name="formsearch" action="#" method="GET">
-                    <input class="form-control form-control-sm" type="search" name="search" placeholder="" aria-controls="dataTable"> 
-                  </form>
+                  <input class="form-control form-control-sm" type="search" placeholder="" aria-controls="dataTable"> 
+                  <a class="btn btn-primary ml-auto" href="login.php" role="button" style="margin-top: 5px">Cari</a>
                 </div>
               </div>
               <div class="row">
-                <div class="col-sm-12" style = "font-size: 14px">
+                <div class="col-sm-12">
                   <table id="dataTable" class="table table-bordered table-striped dataTable" role="grid" style="width: 100%" width="100%" cellspacing="0">
                     <thead>
-                      <tr role="row" style="white-space: nowrap">
+                      <tr role="row">
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1" width="50px" style="text-align: center;">No</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">NIP</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Nama</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Sebutan Jabatan</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Unit</th>
-                        <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Kode Sertifikasi</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Judul Sertifikasi</th>
+                        <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Kode Sertifikasi</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Pelaksana</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">No Sertifikat</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Masa Berlaku</th>
@@ -138,11 +123,26 @@
                     </thead>
                     <tbody style="text-align: center;">
                       <?php
-                        include('server/loadsertifikasi.php');
+                        $query1 = "SELECT * FROM sertifikasi";
+                        $result1 = mysqli_query($db, $query1);
+                        if (!$result1) {
+                          printf("Error: %s\n", mysqli_error($db));
+                          exit();
+                        }
+
+                        $halaman = 20;
+                        $page = isset($_GET['halaman'])? (int)$_GET["halaman"]:1;
+                        $mulai = ($page>1) ? ($page * $halaman) - $halaman : 0;
+                        $query2 = mysqli_query($db, "SELECT * FROM sertifikasi LIMIT $mulai, $halaman");
+                        $sql = mysqli_query($db, $query1);
+                        $total = mysqli_num_rows($sql);
+                        $pages = ceil($total/$halaman);
+                        $no = $mulai+1;
+
                         while($row1 = mysqli_fetch_assoc($query2)):
                       ?>
                       <tr class="odd" role="row">
-                        <td><?php echo $row1["no"]; ?></td>
+                        <td><?php echo $row1["id"]; ?></td>
                         <td><?php echo $row1["nip"]; ?></td>
                         <td><?php echo $row1["nama"]; ?></td>
                         <td><?php echo $row1["jabatan"]; ?></td>
@@ -152,7 +152,7 @@
                         <td><?php echo $row1["pelaksana"]; ?></td>
                         <td><?php echo $row1["no sertifikasi"]; ?></td>
                         <td><?php echo $row1["masa berlaku"]; ?></td>
-                        <td><?php echo $row1["sampai dengan"]; ?></td>
+                        <td><?php echo $row1["sd"]; ?></td>
                         <td><?php echo $row1["keterangan"]; ?></td>
                       </tr>
                       <?php endwhile; ?>
@@ -160,17 +160,26 @@
                   </table>
                   <div class="page">
                     <ul class="pagination">
-                      <li class="page-item"><a class="page-link" href="?halaman=<?php echo $page-1; /*echo if (page=1) {page=page;}*/ ?>">Prev</a></li>
-                      <?php
-                          for ($i=max($page-2, 1); $i<max(1, min($pages,$page)); $i++) { ?>
-                          <li class="page-item"><a class="page-link" href="?halaman=<?php echo $i; ?>"><?php echo $i; ?></a></li>
-                      <?php } ?>
-                      <li class="page-item active"><a class="page-link" href="?halaman=<?php echo $i; ?>"><?php echo $page; ?></a></li>
-                      <?php
-                          for ($i=max($page+1, 1); $i<=max(1, min($pages,$page+3)); $i++) { ?>
-                          <li class="page-item"><a class="page-link" href="?halaman=<?php echo $i; ?>"><?php echo $i; ?></a></li>
-                      <?php } ?>
-                      <li class="page-item"><a class="page-link" href="?halaman=<?php echo $page+1; ?>">Next</a></li>
+<?php 
+                      if($page > 1){
+                        echo '<li class="page-item"><a class="page-link" href="?halaman='.($page-1).'">Prev</a></li>';
+                      }
+?>
+<?php 
+                      for($i = 1; $i <= $pages; $i++){
+                        if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $pages)){
+                          if($i==$pages && $page <= $pages-5) echo '<li class="page-item disabled"><a class="page-link" href="">...</a></li>';
+                          if ($i == $page) echo '<li class="page-item"><a class="page-link" href="?halaman='.$i.'">'.$i.'</a></li>';
+                          else echo '<li class="page-item"><a class="page-link" href="?halaman='.$i.'">'.$i.'</a></li>';
+                          if($i==1 && $page >= 6) echo '<li class="page-item disabled"><a class="page-link" href="">...</a></li>';
+                        }
+                      }
+?>
+<?php 
+                      if($page < $pages){
+                        echo '<li class="page-item"><a class="page-link" href="?halaman='.($page+1).'">Next</a></li>';
+                      }
+?>
                     </ul>
                   </div>
                 </div>
@@ -251,7 +260,7 @@
                 </form>
                 <form method="post" action="sertifikasi.php" enctype="multipart/form-data">
                   <input type="file" name="myfile"> <br>
-                  <button type="submit" nxame="save">upload</button>
+                  <button type="submit" name="save">upload</button>
                 </form>
               </div>
             </div>
@@ -270,24 +279,23 @@
         </div>
       </div>
     </div>
+<script>
+  $(document).ready(function () {
 
-  <script>
-    $(document).ready(function () {
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+    });
+});
 
-      $('#sidebarCollapse').on('click', function () {
-          $('#sidebar').toggleClass('active');
-      });
-  });
+  function jumpScroll() {
+    window.scroll(0,5700); // horizontal and vertical scroll targets
+  }
 
-    function jumpScroll() {
-      window.scroll(0,5700); // horizontal and vertical scroll targets
-    }
-
-    $('costumefileUp').on('change',function(){
-                  //get the file name
-                  var fileName = $(this).val();
-                  //replace the "Choose a file" label
-                  $(this).next('.custom-file-label').html(fileName);
-    })
-  </script>
+  $('costumefileUp').on('change',function(){
+                //get the file name
+                var fileName = $(this).val();
+                //replace the "Choose a file" label
+                $(this).next('.custom-file-label').html(fileName);
+  })
+</script>
 </body>

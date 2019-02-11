@@ -105,7 +105,7 @@
                 <div class="col-sm-12">
                   <table id="dataTable" class="table table-bordered table-striped dataTable" role="grid" style="width: 100%" width="100%" cellspacing="0">
                     <thead>
-                      <tr role="row">
+                      <tr role="row" style="font-size: 12px">
                         <th class="sortting_asc align-middle" tabindex="0" rowspan="2" colspan="1" width="50px">No</th>
                         <th class="sortting_asc align-middle" tabindex="0" rowspan="2" colspan="1">Nama</th>
                         <th class="sortting_asc align-middle" tabindex="0" rowspan="2" colspan="1">NIP</th>
@@ -116,7 +116,7 @@
                         <th class="sortting_asc align-middle" tabindex="0" rowspan="1" colspan="4" style="text-align: center;">Berkas</th>
                         <th class="sortting_asc align-middle" tabindex="0" rowspan="1" colspan="3" style="text-align: center;">Kriteria Talent</th>
                       </tr>
-                      <tr style="text-align: center;">
+                      <tr style="text-align: center; font-size: 12px">
                         <th>Berkas 1</th>
                         <th>Berkas 2</th>
                         <th>Berkas 3</th>
@@ -147,7 +147,7 @@
 
                         while($row1 = mysqli_fetch_assoc($query2)):
                       ?>
-                      <tr class="odd" role="row">
+                      <tr class="odd" role="row" style="font-size: 12px;">
                         <td><?php echo $row1["id"]; ?></td>
                         <td><?php echo $row1["nama"]; ?></td>
                         <td><?php echo $row1["nip"]; ?></td>
@@ -155,10 +155,10 @@
                         <td><?php echo $row1["jabatan"]; ?></td>
                         <td><?php echo $row1["grade"]; ?></td>
                         <td><?php echo $row1["tanggal"]; ?></td>
-                        <td><?php echo $row1["berkas1"]; ?></td>
-                        <td><?php echo $row1["berkas2"]; ?></td>
-                        <td><?php echo $row1["berkas3"]; ?></td>
-                        <td><?php echo $row1["cv"]; ?></td>
+                        <td style="text-align: center;"><?php echo $row1["berkas1"]; ?></td>
+                        <td style="text-align: center;"><?php echo $row1["berkas2"]; ?></td>
+                        <td style="text-align: center;"><?php echo $row1["berkas3"]; ?></td>
+                        <td style="text-align: center;"><?php echo $row1["cv"]; ?></td>
                         <td><?php echo $row1["talent1"]; ?></td>
                         <td><?php echo $row1["talent2"]; ?></td>
                         <td><?php echo $row1["talent3"]; ?></td>
@@ -169,11 +169,26 @@
                   </table>
                   <div class="page">
                     <ul class="pagination">
-                      <li class="page-item disabled"><a class="page-link" href="#">Prev</a></li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+<?php 
+                      if($page > 1){
+                        echo '<li class="page-item"><a class="page-link" href="?halaman='.($page-1).'">Prev</a></li>';
+                      }
+?>
+<?php 
+                      for($i = 1; $i <= $pages; $i++){
+                        if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $pages)){
+                          if($i==$pages && $page <= $pages-5) echo '<li class="page-item disabled"><a class="page-link" href="">...</a></li>';
+                          if ($i == $page) echo '<li class="page-item"><a class="page-link" href="?halaman='.$i.'">'.$i.'</a></li>';
+                          else echo '<li class="page-item"><a class="page-link" href="?halaman='.$i.'">'.$i.'</a></li>';
+                          if($i==1 && $page >= 6) echo '<li class="page-item disabled"><a class="page-link" href="">...</a></li>';
+                        }
+                      }
+?>
+<?php 
+                      if($page < $pages){
+                        echo '<li class="page-item"><a class="page-link" href="?halaman='.($page+1).'">Next</a></li>';
+                      }
+?>
                     </ul>
                   </div>
                 </div>

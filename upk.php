@@ -102,7 +102,7 @@ include('server/serverlogin.php');
               </div>
               <div class="row">
                 <div class="col-sm-12">
-                  <table id="dataTable" class="table table-bordered table-striped dataTable" role="grid" style="width: 100%" width="100%" cellspacing="0">
+                  <table id="dataTable" class="table table-bordered table-striped dataTable" role="grid" style="width: 100%; font-size: 12px" width="100%" cellspacing="0">
                     <thead>
                       <tr role="row">
                         <th class="sortting_asc align-middle" tabindex="0" rowspan="2" colspan="1" width="50px" style="text-align: center;">No</th>
@@ -111,6 +111,7 @@ include('server/serverlogin.php');
                         <th class="sortting_asc align-middle" tabindex="0" rowspan="2" colspan="1">Unit</th>
                         <th class="sortting_asc align-middle" tabindex="0" rowspan="2" colspan="1">Jabatan</th>
                         <th class="sortting_asc align-middle" tabindex="0" rowspan="2" colspan="1">Grade</th>
+                        <th class="sortting_asc align-middle" tabindex="0" rowspan="2" colspan="1" style="text-align: center;" width="100px">Bobot Lulus Seleksi Administrasi</th>
                         <th class="sortting_asc align-middle" tabindex="0" rowspan="1" colspan="4" width="100px" style="text-align: center;">Penilaian & kontribusi</th>
                         <th class="sortting_asc align-middle" tabindex="0" rowspan="2" colspan="1" style="text-align: center;">Bobot Kompetensi</th>
                         <th class="sortting_asc align-middle" tabindex="0" rowspan="1" colspan="2" style="text-align: center;">Kesimpulan</th>
@@ -151,24 +152,40 @@ include('server/serverlogin.php');
                         <td><?php echo $row1["unit"]; ?></td>
                         <td><?php echo $row1["jabatan"]; ?></td>
                         <td><?php echo $row1["grade"]; ?></td>
+                        <td style="text-align: center;"><?php echo $row1["lulus"]; ?></td>
                         <td><?php echo $row1["a"]; ?></td>
                         <td><?php echo $row1["b"]; ?></td>
                         <td><?php echo $row1["c"]; ?></td>
                         <td><?php echo $row1["d"]; ?></td>
-                        <td><?php echo $row1["bobot"]; ?></td>
-                        <td><?php echo $row1["nilai"]; ?></td>
-                        <td><?php echo $row1["presentasi"]; ?></td>
+                        <td style="text-align: center;"><?php echo $row1["bobot"]; ?></td>
+                        <td style="text-align: center;"><?php echo $row1["nilai"]; ?></td>
+                        <td style="text-align: center;"><?php echo $row1["presentasi"]; ?></td>
                       </tr>
                       <?php endwhile; ?>
                     </tbody>
                   </table>
                   <div class="page">
                     <ul class="pagination">
-                      <li class="page-item disabled"><a class="page-link" href="#">Prev</a></li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+<?php 
+                      if($page > 1){
+                        echo '<li class="page-item"><a class="page-link" href="?halaman='.($page-1).'">Prev</a></li>';
+                      }
+?>
+<?php 
+                      for($i = 1; $i <= $pages; $i++){
+                        if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $pages)){
+                          if($i==$pages && $page <= $pages-5) echo '<li class="page-item disabled"><a class="page-link" href="">...</a></li>';
+                          if ($i == $page) echo '<li class="page-item"><a class="page-link" href="?halaman='.$i.'">'.$i.'</a></li>';
+                          else echo '<li class="page-item"><a class="page-link" href="?halaman='.$i.'">'.$i.'</a></li>';
+                          if($i==1 && $page >= 6) echo '<li class="page-item disabled"><a class="page-link" href="">...</a></li>';
+                        }
+                      }
+?>
+<?php 
+                      if($page < $pages){
+                        echo '<li class="page-item"><a class="page-link" href="?halaman='.($page+1).'">Next</a></li>';
+                      }
+?>
                     </ul>
                   </div>
                 </div>
