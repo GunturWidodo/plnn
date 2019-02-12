@@ -24,8 +24,12 @@ if (isset($_POST['save'])) {
     $time = time();
     $ran = rand();
     $filename = $ran.$time.$filename1;
+    
+    if(!file_exists("../upload/berkas/". $_SESSION["login_user"] ."/")){
+        mkdir("../upload/berkas/". $_SESSION["login_user"] ."/");
+    }
 
-    $destination = '../upload/berkas/' . $filename;
+    $destination = '../upload/berkas/'. $_SESSION["login_user"] ."/" . $filename;
     
     if (!in_array($extension, ['zip', 'pdf', 'docx', 'png'])) {
         echo "You file extension must be .zip, .pdf, .docx, or png";
