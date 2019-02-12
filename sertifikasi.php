@@ -97,8 +97,11 @@
               <div class="row">
                 <div id="dataTable_filter" class="dataTables_filter" style="margin-left: 20px; margin-bottom: 10px">
                   <label>Search:</label>
-                  <input class="form-control form-control-sm" type="search" placeholder="" aria-controls="dataTable"> 
-                  <a class="btn btn-primary ml-auto" href="login.php" role="button" style="margin-top: 5px">Cari</a>
+                  <input class="form-control form-control-sm" type="search" placeholder="" aria-controls="dataTable">
+<?php 
+                  include('loadsertifikasi.php');
+?> 
+                  <button class="btn btn-primary ml-auto" style="margin-top: 5px" name="search">Cari</button>
                 </div>
               </div>
               <div class="row">
@@ -153,7 +156,7 @@
                       for($i = 1; $i <= $pages; $i++){
                         if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $pages)){
                           if($i==$pages && $page <= $pages-5) echo '<li class="page-item disabled"><a class="page-link" href="">...</a></li>';
-                          if ($i == $page) echo '<li class="page-item active"><a class="page-link" href="?halaman='.$i.'">'.$i.'</a></li>';
+                          if ($i == $page) echo '<li class="page-item"><a class="page-link" href="?halaman='.$i.'">'.$i.'</a></li>';
                           else echo '<li class="page-item"><a class="page-link" href="?halaman='.$i.'">'.$i.'</a></li>';
                           if($i==1 && $page >= 6) echo '<li class="page-item disabled"><a class="page-link" href="">...</a></li>';
                         }

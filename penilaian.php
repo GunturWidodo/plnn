@@ -113,8 +113,11 @@
             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
               <div class="row">
                 <div class="col-sm-12">
-                  <table id="tblData" class="table table-bordered dataTable" role="grid" style="width: 100%" width="100%" cellspacing="0">    <p style="margin-bottom:-1px; text-transform: uppercase;" id="setKategori"></p>
+                  <table id="tblData" class="table table-bordered dataTable" role="grid" style="width: 100%" width="100%" cellspacing="0">
                     <thead style="text-align: center; font-size: 12px;">
+                      <tr>
+                        <th class="sortting_asc" style="text-align: left;" tabindex="0" rowspan="1" colspan="14" id="setKategori"> </th>
+                      </tr>
                       <tr role="row">
                         <th class="sortting_asc align-middle" tabindex="0" rowspan="3" colspan="1" width="50px" style="text-align: center;">No</th>
                         <th class="sortting_asc align-middle" tabindex="0" rowspan="3" colspan="1">Nama</th>
