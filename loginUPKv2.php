@@ -1,4 +1,12 @@
-<?php  ?>
+<?php 
+  $db = mysqli_connect('localhost', 'root', '', 'registration');
+  $query3 = "SELECT * FROM users WHERE usertype = 'peserta' OR usertype = ''";
+  $result2 = mysqli_query($db, $query3);
+  if (!$result2) {
+    printf("Error: %s\n", mysqli_error($db));
+    exit();
+  }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -67,65 +75,14 @@
                     </thead>
                     <tbody style="text-align: center;">
                       <tr class="odd" role="row">
-                        <td>1</td>
-                        <td>NamaTest</td>
-                        <td>DB123</td>
+                        <?php while($row2= mysqli_fetch_array($result2)) :   ?>
+                          <td><?php echo $row2["id"]; ?></td>
+                          <td><?php echo $row2["nama"]; ?></td>
+                          <td><?php echo $row2["nip"]; ?></td>
+                        <?php $_SESSION["user"] = $row2[0]; echo $_SESSION["user"];?>
                         <td><a href="penilaian.php">Mulai Penilaian</a></td>
                       </tr>
-                      <tr class="odd" role="row">
-                        <td>1</td>
-                        <td>NamaTest</td>
-                        <td>DB123</td>
-                        <td><a href="penilaian.php">Mulai Penilaian</a></td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td>1</td>
-                        <td>NamaTest</td>
-                        <td>DB123</td>
-                        <td><a href="penilaian.php">Mulai Penilaian</a></td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td>1</td>
-                        <td>NamaTest</td>
-                        <td>DB123</td>
-                        <td><a href="penilaian.php">Mulai Penilaian</a></td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td>1</td>
-                        <td>NamaTest</td>
-                        <td>DB123</td>
-                        <td><a href="penilaian.php">Mulai Penilaian</a></td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td>1</td>
-                        <td>NamaTest</td>
-                        <td>DB123</td>
-                        <td><a href="penilaian.php">Mulai Penilaian</a></td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td>1</td>
-                        <td>NamaTest</td>
-                        <td>DB123</td>
-                        <td><a href="penilaian.php">Mulai Penilaian</a></td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td>1</td>
-                        <td>NamaTest</td>
-                        <td>DB123</td>
-                        <td><a href="penilaian.php">Mulai Penilaian</a></td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td>1</td>
-                        <td>NamaTest</td>
-                        <td>DB123</td>
-                        <td><a href="penilaian.php">Mulai Penilaian</a></td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td>1</td>
-                        <td>NamaTest</td>
-                        <td>DB123</td>
-                        <td><a href="penilaian.php">Mulai Penilaian</a></td>
-                      </tr>
+                      <?php endwhile; ?>
                     </tbody>
                   </table>
                 </div>
@@ -181,42 +138,7 @@
                         <td>DB123</td>
                         <td><a href="penilaian.php">Mulai Penilaian</a></td>
                       </tr>
-                      <tr class="odd" role="row">
-                        <td>1</td>
-                        <td>NamaTest</td>
-                        <td>DB123</td>
-                        <td><a href="penilaian.php">Mulai Penilaian</a></td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td>1</td>
-                        <td>NamaTest</td>
-                        <td>DB123</td>
-                        <td><a href="penilaian.php">Mulai Penilaian</a></td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td>1</td>
-                        <td>NamaTest</td>
-                        <td>DB123</td>
-                        <td><a href="penilaian.php">Mulai Penilaian</a></td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td>1</td>
-                        <td>NamaTest</td>
-                        <td>DB123</td>
-                        <td><a href="penilaian.php">Mulai Penilaian</a></td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td>1</td>
-                        <td>NamaTest</td>
-                        <td>DB123</td>
-                        <td><a href="penilaian.php">Mulai Penilaian</a></td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td>1</td>
-                        <td>NamaTest</td>
-                        <td>DB123</td>
-                        <td><a href="penilaian.php">Mulai Penilaian</a></td>
-                      </tr>
+                     
                     </tbody>
                   </table>
                 </div>
@@ -266,48 +188,7 @@
                         <td>DB123</td>
                         <td><a href="penilaian.php">Mulai Penilaian</a></td>
                       </tr>
-                      <tr class="odd" role="row">
-                        <td>1</td>
-                        <td>NamaTest</td>
-                        <td>DB123</td>
-                        <td><a href="penilaian.php">Mulai Penilaian</a></td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td>1</td>
-                        <td>NamaTest</td>
-                        <td>DB123</td>
-                        <td><a href="penilaian.php">Mulai Penilaian</a></td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td>1</td>
-                        <td>NamaTest</td>
-                        <td>DB123</td>
-                        <td><a href="penilaian.php">Mulai Penilaian</a></td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td>1</td>
-                        <td>NamaTest</td>
-                        <td>DB123</td>
-                        <td><a href="penilaian.php">Mulai Penilaian</a></td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td>1</td>
-                        <td>NamaTest</td>
-                        <td>DB123</td>
-                        <td><a href="penilaian.php">Mulai Penilaian</a></td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td>1</td>
-                        <td>NamaTest</td>
-                        <td>DB123</td>
-                        <td><a href="penilaian.php">Mulai Penilaian</a></td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td>1</td>
-                        <td>NamaTest</td>
-                        <td>DB123</td>
-                        <td><a href="penilaian.php">Mulai Penilaian</a></td>
-                      </tr>
+                      
                     </tbody>
                   </table>
                 </div>
