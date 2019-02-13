@@ -5,6 +5,7 @@
   if (!isset($_SESSION["admin"])) {
     header('location: login.php');
   }
+  $searchquery = "";
  ?>
 
 <!DOCTYPE html>
@@ -97,25 +98,36 @@
               <div class="row">
                 <div id="dataTable_filter" class="dataTables_filter" style="margin-left: 20px; margin-bottom: 10px">
                   <label>Search:</label>
-                  <input class="form-control form-control-sm" type="search" placeholder="" aria-controls="dataTable">
-<?php 
-                  include('loadsertifikasi.php');
-?> 
-                  <button class="btn btn-primary ml-auto" style="margin-top: 5px" name="search">Cari</button>
+                  <?php 
+                    if (isset($_GET['search'])) {
+                      $searchquery=$_GET['search'];
+                    }
+                  ?>
+                  <script type="text/javascript">
+                    document.onkeydown=function(evt){
+                      var keyCode = evt ? (evt.which ? evt.which : evt.keyCode) : event.keyCode;
+                      if (keyCode == 13) {
+                        document.formsearch.submit();
+                      }
+                    }
+                  </script>
+                  <form name="formsearch" action="#" method="GET">
+                    <input class="form-control form-control-sm" type="search" name="search" placeholder="" aria-controls="dataTable"> 
+                  </form>
                 </div>
               </div>
               <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12" style = "font-size: 14px">
                   <table id="dataTable" class="table table-bordered table-striped dataTable" role="grid" style="width: 100%" width="100%" cellspacing="0">
                     <thead>
-                      <tr role="row">
+                      <tr role="row" style="white-space: nowrap">
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1" width="50px" style="text-align: center;">No</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">NIP</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Nama</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Sebutan Jabatan</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Unit</th>
-                        <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Judul Sertifikasi</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Kode Sertifikasi</th>
+                        <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Judul Sertifikasi</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Pelaksana</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">No Sertifikat</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Masa Berlaku</th>
@@ -125,47 +137,73 @@
                       </tr>
                     </thead>
                     <tbody style="text-align: center;">
-<?php                       
-                      include('loadsertifikasi.php');
-                      while($row1 = mysqli_fetch_assoc($query2)):
-?>
-                      <tr class="odd" role="row">
-                        <td><?php echo $row1["id"]; ?></td>
+                      <?php
+                        include('server/loadsertifikasi.php');
+                        while($row1 = mysqli_fetch_assoc($query2)):
+                      ?>
+                      <tr class="odd" role= "row">
+                        <td><?php echo $row1["no"]; ?></td>
                         <td><?php echo $row1["nip"]; ?></td>
                         <td><?php echo $row1["nama"]; ?></td>
                         <td><?php echo $row1["jabatan"]; ?></td>
                         <td><?php echo $row1["unit"]; ?></td>
-                        <td><?php echo $row1["judul sertifikasi"]; ?></td>
-                        <td><?php echo $row1["kode sertifikasi"]; ?></td>
+                        <td><?php echo $row1["judul_sertifikasi"]; ?></td>
+                        <td><?php echo $row1["kode_sertifikasi"]; ?></td>
                         <td><?php echo $row1["pelaksana"]; ?></td>
-                        <td><?php echo $row1["no sertifikasi"]; ?></td>
-                        <td><?php echo $row1["masa berlaku"]; ?></td>
-                        <td><?php echo $row1["sd"]; ?></td>
+                        <td><?php echo $row1["no_sertifikasi"]; ?></td>
+                        <td><?php echo $row1["masa_berlaku"]; ?></td>
+                        <td><?php echo $row1["sampai_dengan"]; ?></td>
                         <td><?php echo $row1["keterangan"]; ?></td>
                       </tr>
                       <?php endwhile; ?>
                     </tbody>                      
                   </table>
                   <div class="page">
-                    <ul class="pagination">
-<?php 
-                      if($page > 1){
-                        echo '<li class="page-item"><a class="page-link" href="?halaman='.($page-1).'">Prev</a></li>';
-                      }
+                  <!--<form><input type="checkbox" id="tes" name="descending" value="desc">teada namana</form>
+                  <script type="text/javascript">
+                    $('#tes').on('change', function() {
+                      location.reload();
+                    });
+                  </script> -->
 
+                    <ul class="pagination">
+                    <?php 
+                    $url = '?halaman=';
+
+                    if (isset($_GET['search'])) {
+                      $url =  '?search=' . $searchquery . '&halaman=';
+                      if($page > 1){
+                      echo '<li class="page-item"><a class="page-link" href="'.$url.''.($page-1).'">Prev</a></li>';
+                      }
                       for($i = 1; $i <= $pages; $i++){
                         if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $pages)){
                           if($i==$pages && $page <= $pages-5) echo '<li class="page-item disabled"><a class="page-link" href="">...</a></li>';
-                          if ($i == $page) echo '<li class="page-item"><a class="page-link" href="?halaman='.$i.'">'.$i.'</a></li>';
-                          else echo '<li class="page-item"><a class="page-link" href="?halaman='.$i.'">'.$i.'</a></li>';
+                          if ($i == $page) echo '<li class="page-item active"><a class="page-link" href="'.$url.''.$i.'">'.$i.'</a></li>';
+                          else echo '<li class="page-item"><a class="page-link" href="'.$url.''.$i.'">'.$i.'</a></li>';
                           if($i==1 && $page >= 6) echo '<li class="page-item disabled"><a class="page-link" href="">...</a></li>';
                         }
+                        }
+                        if($page < $pages){
+                          echo '<li class="page-item"><a class="page-link" href="'.$url.''.($page+1).'">Next</a></li>';
                       }
- 
-                      if($page < $pages){
-                        echo '<li class="page-item"><a class="page-link" href="?halaman='.($page+1).'">Next</a></li>';
+                    } else {
+                      if($page > 1){
+                      echo '<li class="page-item"><a class="page-link" href="'.$url.''.($page-1).'">Prev</a></li>';
                       }
-?>
+                      for($i = 1; $i <= $pages; $i++){
+                        if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $pages)){
+                          if($i==$pages && $page <= $pages-5) echo '<li class="page-item disabled"><a class="page-link" href="">...</a></li>';
+                          if ($i == $page) echo '<li class="page-item active"><a class="page-link" href="'.$url.''.$i.'">'.$i.'</a></li>';
+                          else echo '<li class="page-item"><a class="page-link" href="'.$url.''.$i.'">'.$i.'</a></li>';
+                          if($i==1 && $page >= 6) echo '<li class="page-item disabled"><a class="page-link" href="">...</a></li>';
+                        }
+                        }
+                        if($page < $pages){
+                          echo '<li class="page-item"><a class="page-link" href="'.$url.''.($page+1).'">Next</a></li>';
+                      }
+                    }
+                    ?>
+
                     </ul>
                   </div>
                 </div>
@@ -180,14 +218,14 @@
               <h3>Input Data Pegawai</h3>
               <hr>
               <div class="forms">
-                <form>
+                <form method="post">
                   <div class="row">
                     <div class="col-5 col-sm-6 col-md-6">
-                      <input type="text" name="nama" placeholder="NIP" required class="form-control input-lg" value="" />
+                      <input type="text" name="nip" placeholder="NIP" required class="form-control input-lg" value="" />
                     <br>
                     </div>
                     <div class="col-5 col-sm-6 col-md-6">  
-                      <input type="text" name="nip" placeholder="Nama" required class="form-control input-lg" value="" />
+                      <input type="text" name="nama" placeholder="Nama" required class="form-control input-lg" value="" />
                     <br>
                     </div>
                   </div>
@@ -217,7 +255,7 @@
                     <br>
                     </div>
                     <div class="col-5 col-sm-6 col-md-6">
-                      <input type="text" name="nosertifikat" placeholder="No Sertifikasi" required class="form-control input-lg" value="" />
+                      <input type="text" name="nomor" placeholder="No Sertifikasi" required class="form-control input-lg" value="" />
                     <br>
                     </div>
                   </div>
@@ -233,21 +271,29 @@
                   </div>
                   <div class="row">
                     <div class="col-5 col-sm-6 col-md-6">
+                      <input type="text" name="ket" placeholder="Keterangan" required class="form-control input-lg" value="" />
+                    <br>
+                    </div>
+                  </div>
+                  <button type="submit" name="simpan" class="btn btn-success">Simpan</button>
+
+                  <div class="row">
+                    <div class="col-5 col-sm-6 col-md-6">
                     <form>
-                      <div class="custom-file mb-3">
+                      <!--<div class="custom-file mb-3">
                         <input required="" type="file" class="custom-file-input" id="customFile" name="filename">
                         <label class="custom-file-label" for="customFile">Upload Berkas</label>
                       </div>
-                      <button type="button" class="btn btn-success">Save</button>
-
+                      <button type="submit" name="submit" class="btn btn-lg btn-primary btn-block">Daftar</button>-->
+                      
                     </form>
                     </div>
                   </div>
                 </form>
-                <form method="post" action="sertifikasi.php" enctype="multipart/form-data">
+                <!--<form method="post" action="sertifikasi.php" enctype="multipart/form-data">
                   <input type="file" name="myfile"> <br>
-                  <button type="submit" name="save">upload</button>
-                </form>
+                  <button type="submit" nxame="save">upload</button>
+                </form>-->
               </div>
             </div>
           <div class="col-xl-3 col-sm-6 col-mb-3">
@@ -265,23 +311,24 @@
         </div>
       </div>
     </div>
-<script>
-  $(document).ready(function () {
 
-    $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('active');
-    });
-});
+  <script>
+    $(document).ready(function () {
 
-  function jumpScroll() {
-    window.scroll(0,5700); // horizontal and vertical scroll targets
-  }
+      $('#sidebarCollapse').on('click', function () {
+          $('#sidebar').toggleClass('active');
+      });
+  });
 
-  $('costumefileUp').on('change',function(){
-                //get the file name
-                var fileName = $(this).val();
-                //replace the "Choose a file" label
-                $(this).next('.custom-file-label').html(fileName);
-  })
-</script>
+    function jumpScroll() {
+      window.scroll(0,5700); // horizontal and vertical scroll targets
+    }
+
+    $('costumefileUp').on('change',function(){
+                  //get the file name
+                  var fileName = $(this).val();
+                  //replace the "Choose a file" label
+                  $(this).next('.custom-file-label').html(fileName);
+    })
+  </script>
 </body>
