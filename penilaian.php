@@ -162,6 +162,7 @@
                       </tr>
                     </tbody>
                   </table>
+                  <p id="tanggal"></p>
                 </div>
               </div>
             </div>
@@ -174,6 +175,16 @@
   </div>
 </div>
 <script type="text/javascript">
+
+var bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+var tanggal = new Date().getDate();
+var _bulan = new Date().getMonth();
+var _tahun = new Date().getYear();
+var bulan = bulan[_bulan];
+var tahun = (_tahun < 1000) ? _tahun + 1900 : _tahun;
+
+document.getElementById("tanggal").innerHTML = (tanggal + ' ' + bulan + ' ' + tahun);
+
   function getVal(){
     var seP = Number("10")
     var nA = Number(document.getElementById("na").value);
@@ -249,6 +260,7 @@
     var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
     window.location.href = uri + base64(format(template, ctx))
   }
+
 
 })()
 </script>
