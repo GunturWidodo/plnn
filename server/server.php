@@ -37,11 +37,6 @@
 		
 		$sql = "INSERT INTO sertifikasi (nip, nama, jabatan, unit, kode_sertifikasi, judul_sertifikasi, pelaksana, no_sertifikasi, masa_berlaku, sampai_dengan, keterangan) VALUES ('$nip', '$nama', '$jabatan', '$unit', '$kode', '$judul', '$pelaksana', '$nomor', '$dari', '$sampai', '$ket')";
 		mysqli_query($db, $sql);
-		$tesss = settype($sql, "string");
-
-		echo '<script language="javascript">';
-		echo 'alert("'.$nip.'dan'.$tesss.'")';
-		echo '</script>';
 
 		#header('location: ./sertifikasi.php');	
 	}
