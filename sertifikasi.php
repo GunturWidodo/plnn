@@ -274,19 +274,15 @@
                       <input type="text" name="ket" placeholder="Keterangan" required class="form-control input-lg" value="" />
                     <br>
                     </div>
-                  </div>
-                  <button type="submit" name="simpan" class="btn btn-success">Simpan</button>
-
-                  <div class="row">
-                    <div class="col-5 col-sm-6 col-md-6">
-                    <form>
-                      <!--<div class="custom-file mb-3">
+                    <div class="col-5" style="margin-left: 15px">
                         <input required="" type="file" class="custom-file-input" id="customFile" name="filename">
                         <label class="custom-file-label" for="customFile">Upload Berkas</label>
-                      </div>
-                      <button type="submit" name="submit" class="btn btn-lg btn-primary btn-block">Daftar</button>-->
-                      
-                    </form>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-5" style="margin-left: 15px"></div><br>
+                    <div class="col-5 ml-auto">
+                      <button type="submit" name="simpan" class="btn btn-success">Simpan</button> 
                     </div>
                   </div>
                 </form>
@@ -302,7 +298,7 @@
               <div class="custom-file mb-3">
                 <form method="POST" action="import.php" enctype="multipart/form-data">
                   <input class="costume-file-input" type="file" name="excel" id="costumefileUp">
-                  <br>
+                  <br><br>
                   <button type="submit" class="btn btn-primary">UPLOAD</button>
                 </form>
               </div>            
