@@ -76,11 +76,11 @@
                     <tbody style="text-align: center;">
                       <tr class="odd" role="row">
                         <?php while($row2= mysqli_fetch_array($result2)) :   ?>
-                          <td><?php echo $row2["id"]; ?></td>
+                          <td><?php echo $id = $row2["id"]; ?></td>
                           <td><?php echo $row2["nama"]; ?></td>
                           <td><?php echo $row2["nip"]; ?></td>
-                        <?php $_SESSION["user"] = $row2[0]; echo $_SESSION["user"];?>
-                        <td><a href="penilaian.php">Mulai Penilaian</a></td>
+                        <?php #bgmana caranya link href dengan id yang bersesuaian  ?>
+                        <td><a href="penilaian.php?id=<?php echo $id?>">Mulai Penilaian</a></td>
                       </tr>
                       <?php endwhile; ?>
                     </tbody>
@@ -126,19 +126,6 @@
                         <td>DB123</td>
                         <td><a href="penilaian.php">Mulai Penilaian</a></td>
                       </tr>
-                      <tr class="odd" role="row">
-                        <td>1</td>
-                        <td>NamaTest</td>
-                        <td>DB123</td>
-                        <td><a href="penilaian.php">Mulai Penilaian</a></td>
-                      </tr>
-                      <tr class="odd" role="row">
-                        <td>1</td>
-                        <td>NamaTest</td>
-                        <td>DB123</td>
-                        <td><a href="penilaian.php">Mulai Penilaian</a></td>
-                      </tr>
-                     
                     </tbody>
                   </table>
                 </div>
