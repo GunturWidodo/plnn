@@ -1,4 +1,18 @@
-<?php ?>
+<?php 
+  $db = mysqli_connect('localhost', 'root', '', 'registration');
+  
+  $id = $_REQUEST['id'];
+  $sql = "SELECT * FROM users WHERE id='$id'";
+  $query = mysqli_query($db, $sql);
+  while ($row = mysqli_fetch_array($query)){
+    $nama = $row['nama'];
+    $nip = $row['nip'];
+    $judul = $row['judul'];
+    $unit = $row['unit'];
+    $jabatan = $row['jabatan'];
+    $grade = $row['grade'];
+  }
+?>
 
 <!DOCTYPE html>
 <html>
@@ -41,24 +55,20 @@
     <div class="col-xl-3 col-sm-6 col-mb-3">
       <form>
         <h4>Profile</h4>
+        
+        <?php #disini nanti kode mu yg panggil sesuai id dari halaman sebelah ?>
+
         <label for="nama">Nama:</label>
-        <input type="text" name="nama" placeholder="" required class="form-control" value="" disabled="" />
+        <input type="text" name="nama" placeholder="" required class="form-control" value="<?php echo ($nama); ?>" disabled="" />
         <br>
         <label for="nip">NIP:</label>
-        <input type="text" name="nip" placeholder="" required class="form-control" value="" disabled="" />
+        <input type="text" name="nip" placeholder="" required class="form-control" value="<?php echo ($nip); ?>" disabled="" />
         <br>
         <label for="judul">Judul UPK:</label>
-        <input type="text" name="judul" placeholder="" required class="form-control" value="" disabled="" />
+        <input type="text" name="judul" placeholder="" required class="form-control" value="<?php echo ($judul); ?>" disabled="" />
         <br>
-        <select name="berkas" class="custom-select mb-3">
-          <option selected>Download Berkas</option>
-          <option value="berkas1">Berkas 1</option>
-          <option value="berkas2">Berkas 2</option>
-          <option value="berkas3">Berkas 3</option>
-          <option value="berkas4">CV</option>
-        </select>
       </form>
-      <button type="submit" class="btn btn-primary">Unduh</button>
+      <button type="submit" class="btn btn-primary">Unduh Semua Berkas</button>
     </div>
     <div class="col-xl-3 col-sm-4 col-mb-3" style="margin-left: 50px;">
       <form>
@@ -100,10 +110,9 @@
             <input type="text" maxlength="2" name="nilaiD" placeholder="" required class="form-control" value="" id="nd"/>
           </div>
         </div>
-        
         <br>
       </form>
-      <button type="submit" class="btn btn-success" onclick="getVal()">Submit</button>
+      <button type="submit" class="btn btn-success" onclick="getVal()">Nilai</button>
     </div>
     <div class="col-6" style="margin-left: -50px;">
       <h4>Tabel Penilaian</h4>
@@ -146,11 +155,11 @@
                     <tbody style="text-align: center; font-size: 12px;">
                       <tr class="odd" role="row">
                         <td>1</td>
-                        <td style="text-align: center;">NamaTest</td>
-                        <td style="text-align: center;">DB123</td>
-                        <td style="text-align: center;">Database</td>
-                        <td style="text-align: center;">Database</td>
-                        <td style="text-align: center;">Database</td>
+                        <td style="text-align: center;"><?php echo $nama; ?></td>
+                        <td style="text-align: center;"><?php echo $nip; ?></td>
+                        <td style="text-align: center;"><?php echo $unit; ?></td>
+                        <td style="text-align: center;"><?php echo $jabatan; ?></td>
+                        <td style="text-align: center;"><?php echo $grade; ?></td>
                         <td id="bobotLulus" style="text-align: center;"> </td>
                         <td id="kolA" style="text-align: center;"> </td>
                         <td id="kolB" style="text-align: center;"> </td>
@@ -162,7 +171,6 @@
                       </tr>
                     </tbody>
                   </table>
-                  <p id="tanggal"></p>
                 </div>
               </div>
             </div>
@@ -175,16 +183,6 @@
   </div>
 </div>
 <script type="text/javascript">
-
-var bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-var tanggal = new Date().getDate();
-var _bulan = new Date().getMonth();
-var _tahun = new Date().getYear();
-var bulan = bulan[_bulan];
-var tahun = (_tahun < 1000) ? _tahun + 1900 : _tahun;
-
-document.getElementById("tanggal").innerHTML = (tanggal + ' ' + bulan + ' ' + tahun);
-
   function getVal(){
     var seP = Number("10")
     var nA = Number(document.getElementById("na").value);
@@ -260,7 +258,6 @@ document.getElementById("tanggal").innerHTML = (tanggal + ' ' + bulan + ' ' + ta
     var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
     window.location.href = uri + base64(format(template, ctx))
   }
-
 
 })()
 </script>
