@@ -4,9 +4,15 @@
  
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Purna Bakti</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Include the above in your HEAD tag -->
+
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -16,8 +22,11 @@
 <body style="height:1500px">
 
 <div class="bar">
-  <nav class="navbar navbar-expand-sm navbar-custom" style=" background-color: #008C9E" >
-    <a class="navbar-brand" href="#" style="color: #fff; font-size: 27px"><b>Login Sebagai User</b></a>
+  <nav class="navbar navbar-expand-sm navbar-custom" style=" background-color: #008c9e" >
+  <a class="navbar-brand" href="#">
+    <img src="images/pln.jpg" alt="Logo" style="width:40px;">
+  </a>
+    <a class="navbar-brand" href="#" style="color: #fff; font-size: 27px"><b>PLN</b></a>
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" href="#" style="color: #fff; font-size: 18px">Surat Rekomendasi</a>
@@ -38,74 +47,79 @@
   </nav>
 </div>
 <h2 style="text-align: center; margin-top: 50px;"><b>Alur Tahapan</b></h2>
+<hr width="25%" color="grey">
     <div class="status" style="margin-left: 90px; margin-top: 60px;">
       <div class="row" style="margin-top: 30px">
         <div class="col-xl-3 col-sm-4 col-mb-3">
-          <div class="card bg-success" style="width: 180px; margin-left: 130px;">
+          <div class="card bg-info" style="width: 180px; margin-left: 130px;">
             <div class="card-body text-center">
-              <p class="card-text" style="color: white">Surat Rekomendasi</p>
+              <p class="card-text" style="color: white; font-size: 17px;"><b>Surat Rekomendasi</b></p>
             </div>
           </div>
         </div>
         <i class="fas fa-arrow-right fa-2x" style="margin-top: 19px; margin-left: -38px; color: #343a40;"></i>
         <div class="col-2">
-          <div class="card bg-success" style="width: 200px; margin-left: px;" >
+          <div class="card bg-info" style="width: 200px; margin-left: px;" >
             <div class="card-body text-center">
-              <p class="card-text" style="color: white">Jadwal Keberangkatan</p>
+              <p class="card-text" style="color: white; font-size: 17px"><b>Jadwal Keberangkatan</b></p>
             </div>
           </div>
         </div>
         <i class="fas fa-arrow-right fa-2x" style="margin-top: 19px; margin-left: -23px; color: #343a40;"></i>
         <div class="col-2">
-          <div class="card bg-success" style="width: 150px; margin-left: 5px;">
+          <div class="card bg-info" style="width: 150px; margin-left: 5px; height: 90px">
             <div class="card-body text-center">
-              <p class="card-text" style="color: white">Restitusi</p>
+              <p class="card-text" style="color: white; font-size: 20px"><b>Restitusi</b></p>
             </div>
           </div>
         </div>
          <i class="fas fa-arrow-right fa-2x" style="margin-top: 19px; margin-left: -69px; color: #343a40;"></i>
         <div class="col-2">
-          <div class="card bg-success" style="width: 150px; margin-left: 5px;">
+           <div class="card bg-info" style="width: 150px; margin-left: 5px; height: 90px">
             <div class="card-body text-center">
-              <p class="card-text" style="color: white">Surat Udiklat</p>
+              <p class="card-text" style="color: white; font-size: 18px"><b>Surat Udiklat</b></p>
             </div>
           </div>
         </div>
          <i class="fas fa-arrow-right fa-2x" style="margin-top: 19px; margin-left: -69px; color: #343a40;"></i>
         <div class="col-2">
-          <div class="card bg-success" style="width: 150px; margin-left: 10px;">
+          <div class="card bg-info" style="width: 150px; margin-left: 10px; height: 90px">
             <div class="card-body text-center">
-              <p class="card-text" style="color: white">Status</p>
+              <p class="card-text" style="color: white; font-size: 20px"><b>Status</b></p>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-<div style="width: 700px;">
-  <form style="margin-left: 220px; margin-top: 80px; border: 2px solid green; border-radius:5px;">
+<div class="d-flex justify-content-center">
+<div style="width: 500px; border-style: solid; border-color: #008c9e; margin-top: 90px;">
+  <form style="border: 2px; border-radius:5px;">
     <fieldset>
-      <legend style="margin-top: 5px; margin-left: 15px;">Form</legend>
+      <legend style="margin-top: 5px; margin-left: 15px; text-align: center">Jadwal Keberangkatan</legend><br>
         <p>
-            <label style="margin-left: 15px">Jadwal Keberangkatan : </label>
+            <label style="margin-left: 15px">Masukkan Jadwal Keberangkatan Anda :</label>
             <input type="date" name="tanggal" />
         </p>
+        <div class="d-flex justify-content-end">
         <p>
-            <input type="submit" name="submit" value="Send" style="background-color: #4CAF50; color: white; margin-left: 15px;" />
+            <input type="submit" name="submit" value="Submit" style="background-color: #4CAF50; color: white; margin-right: 22px" />
         </p>
+        </div>
     </fieldset>
   </form>
 </div>
+</div>
 <br>
 <br>
-  <h3 style="margin-left: 20px">Upload Berkas</h3>
-      <hr>
+  <h2 style="margin-left: 20px; text-align:center; margin-top: 20px";><b>Upload Berkas</b></h2>
+      <hr width="25%" color ="black">
+      <br><br>
       <div class="container">
       <div class="row">
         <div class="col">
           <form method="post" action="server/uploadBerkas.php" enctype="multipart/form-data">
             <h4>Berkas 1</h4>
-            <input id="filename" type="text" class="form-control" disabled="">
+            <input id="filename" type="text" class="form-control" disabled=""> 
             <input id="upload" type="file" name="myfile"> <br>
             <button class="btn btn-success" type="submit" name="save" style="margin-top: 5px;">Upload</button>
           </form>
@@ -142,8 +156,6 @@
     </div>
     </div>
     </div>
-    <a class="btn btn-success" type="submit" name="don" href="server/donlod.php" style="margin-top: 5px; margin-bottom: 10px;">Dl</a>
-  </div>
 </div>
 </body>
 <script type="text/javascript">
