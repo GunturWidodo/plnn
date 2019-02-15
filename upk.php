@@ -137,7 +137,7 @@ include('server/serverlogin.php');
                         $halaman = 20;
                         $page = isset($_GET['halaman'])? (int)$_GET["halaman"]:1;
                         $mulai = ($page>1) ? ($page * $halaman) - $halaman : 0;
-                        $query2 = mysqli_query($db, "SELECT * FROM users LIMIT $mulai, $halaman");
+                        $query2 = mysqli_query($db, "SELECT * FROM users WHERE usertype = 'peserta' OR usertype = '' LIMIT $mulai, $halaman");
                         $sql = mysqli_query($db, $query1);
                         $total = mysqli_num_rows($sql);
                         $pages = ceil($total/$halaman);
