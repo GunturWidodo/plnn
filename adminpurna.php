@@ -31,7 +31,7 @@ include('server/serverlogin.php');
     <button type="button" id="sidebarCollapse" class="btn btn-info">
       <i class="fas fa-align-left"></i>
     </button>
-    <a class="btn btn-warning ml-auto" href="server/logout.php" role="button" style="color: #008C9E;">Logout</a>          
+    <a class="btn btn-warning ml-auto" href="server/logout.php" role="button" style="color: #008C9E; color: black">Logout</a>          
   </nav>
 </div>
 <div id="wrapper">
@@ -47,10 +47,7 @@ include('server/serverlogin.php');
                 <a href="upkfront.php"><i class="fas fa-info-circle" style="margin-right: 10px;"></i> Info</a>
             </li>
             <li>
-                <a href="akun.php"><i class="fas fa-user-circle" style="margin-right: 10px;"></i> Rekap Purna Bakti</a>
-            </li>
-            <li>
-                <a href="upk.php"><i class="fas fa-database" style="margin-right: 10px;"></i> Database Purna Bakti</a>
+                <a href="upk.php"><i class="fas fa-database" style="margin-right: 10px;"></i> Database Purnabakti</a>
             </li>
         </ul>
     </nav>
@@ -177,4 +174,3 @@ include('server/serverlogin.php');
 });
 </script>
 </html>
-</body>
