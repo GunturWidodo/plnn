@@ -1,5 +1,6 @@
 <?php
-include ('server/serverbio.php'); 
+  include('server/serverlogin.php');
+  include ('server/serverbio.php'); 
 ?>
 
 <!DOCTYPE html>
@@ -79,26 +80,23 @@ include ('server/serverbio.php');
       </div>
       <hr>
   <!-- Bagian Upload -->
-      <h4>Upload Berkas</h4>
+      <h3>Upload Berkas</h3>
       <hr>
       <div class="row">
         <div class="col">
           <form method="post" action="server/uploadBerkas.php" enctype="multipart/form-data">
-            <h3>Berkas 1 
-<?php 
-              $con = mysqli_connect('localhost', 'root', '', 'registration');
-              $db = mysqli_select_db($con,"registration");
-              $query = mysqli_query($con, $sql);
+            <h5>Berkas 1 
+              <?php 
+              $query = mysqli_query($db, $sql);
               while ($row = mysqli_fetch_array($query)) {
                 if (!empty($row['berkas1'])) {
                   echo '<i class="fas fa-check" style="color: #1ae03f;"></i>';
-                }
-                else{
+                } else {
                   echo " ";
                 }
               }
-?>
-            </h3>
+              ?>
+            </h5>
             <input id="filename" type="text" class="form-control" disabled="">
             <input id="upload" type="file" name="myfile"> <br>
             <button class="btn btn-info" type="submit" name="save" style="margin-top: 5px;">Upload</button>
@@ -106,21 +104,19 @@ include ('server/serverbio.php');
         </div>
       <hr>
       <div class="col">
-        <h3>Berkas 2 
+        <h5>Berkas 2 
             <?php 
-            $con = mysqli_connect('localhost', 'root', '', 'registration');
-            $db = mysqli_select_db($con,"registration");
-            $query = mysqli_query($con, $sql);
+            $query = mysqli_query($db, $sql);
             while ($row = mysqli_fetch_array($query)) {
-              if (!empty($row['berkas2'])) {
+              $berkas22 = $row['berkas2'];
+              if (!empty($berkas22)) {
                 echo '<i class="fas fa-check" style="color: #1ae03f;"></i>';
-              }
-              else{
+              } else {
                 echo " ";
               }
             }
            ?>
-           </h3>
+           </h5>
         <form method="post" action="server/uploadBerkas2.php" enctype="multipart/form-data">
           <input id="filename2" type="text" class="form-control" disabled="">
           <input id="upload2" type="file" name="myfile"> <br>
@@ -131,21 +127,18 @@ include ('server/serverbio.php');
       <hr>
       <div class="row">
         <div class="col">
-        <h3>Berkas 3 
+        <h5>Berkas 3 
             <?php 
-            $con = mysqli_connect('localhost', 'root', '', 'registration');
-            $db = mysqli_select_db($con,"registration");
-            $query = mysqli_query($con, $sql);
+            $query = mysqli_query($db, $sql);
             while ($row = mysqli_fetch_array($query)) {
               if (!empty($row['berkas3'])) {
                 echo '<i class="fas fa-check" style="color: #1ae03f;"></i>';
-              }
-              else{
+              } else {
                 echo " ";
               }
             }
            ?>
-           </h3>
+           </h5>
         <form method="post" action="server/uploadBerkas3.php" enctype="multipart/form-data">
           <input id="filename3" type="text"  class="form-control" disabled="">
           <input id="upload3" type="file" name="myfile"> <br>
@@ -154,30 +147,28 @@ include ('server/serverbio.php');
       </div>
       <hr>
       <div class="col">
-        <h3>CV 
+        <h5>CV 
             <?php 
-            $con = mysqli_connect('localhost', 'root', '', 'registration');
-            $db = mysqli_select_db($con,"registration");
-            $query = mysqli_query($con, $sql);
+            $query = mysqli_query($db, $sql);
             while ($row = mysqli_fetch_array($query)) {
               if (!empty($row['cv'])) {
                 echo '<i class="fas fa-check" style="color: #1ae03f;"></i>';
-              }
-              else{
+              } else {
                 echo " ";
               }
             }
            ?>
-           </h3>
-        <form method="post" action="server/uploadBerkas4.php" enctype="multipart/form-data">
+           </h5>
+        <form method="post" action="server/uploadcv.php" enctype="multipart/form-data">
           <input id="filename4" type="text"  class="form-control" disabled="">
           <input id="upload4" type="file" name="myfile"> <br>
-          <button class="btn btn-info" type="submit" name="save4" style="margin-top: 5px;">Upload</button>
+          <button class="btn btn-info" type="submit" name="save4" style="margin-top: 5px; margin-bottom: 10px;">Upload</button>
         </form>
       </div>
     </div>
     </div>
     </div>
+    <a class="btn btn-info" type="submit" name="don" href="server/donlod.php" style="margin-top: 5px; margin-bottom: 10px;">Dl</a>
   </div>
 </div>
 </body>
