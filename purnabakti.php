@@ -118,7 +118,7 @@
       <div class="row">
         <div class="col">
           <form method="post" action="server/uploadBerkas.php" enctype="multipart/form-data">
-            <h4>Berkas 1</h4>
+            <h4>Surat Permintaan Pembayaran</h4>
             <input id="filename" type="text" class="form-control" disabled=""> 
             <input id="upload" type="file" name="myfile"> <br>
             <button class="btn btn-success" type="submit" name="save" style="margin-top: 5px;">Upload</button>
@@ -126,7 +126,7 @@
         </div>
       <hr>
       <div class="col">
-        <h4>Berkas 2</h4> 
+        <h4>Kwitansi Pegawai</h4> 
         <form method="post" action="server/uploadBerkas2.php" enctype="multipart/form-data">
           <input id="filename2" type="text" class="form-control" disabled="">
           <input id="upload2" type="file" name="myfile"> <br>
@@ -134,25 +134,55 @@
         </form>
       </div>
     </div>
-      <hr>
-      <div class="row">
+      <div class="row" >
         <div class="col">
-        <h4>Berkas 3</h4>
+        <h4>Kwitansi Biro Perjalanan</h4>
         <form method="post" action="server/uploadBerkas3.php" enctype="multipart/form-data">
           <input id="filename3" type="text"  class="form-control" disabled="">
           <input id="upload3" type="file" name="myfile"> <br>
           <button class="btn btn-success" type="submit" name="save3" style="margin-top: 5px;">Upload</button>
         </form>
       </div>
-      <hr>
       <div class="col">
-        <h4>CV</h4>
+        <h4>Fotocopy Rekening</h4>
         <form method="post" action="server/uploadcv.php" enctype="multipart/form-data">
           <input id="filename4" type="text"  class="form-control" disabled="">
           <input id="upload4" type="file" name="myfile"> <br>
           <button class="btn btn-success" type="submit name="save4" style="margin-top: 5px; margin-bottom: 10px;">Upload</button>
         </form>
       </div>
+      
+
+      <div class="row">
+      <div class="col" style="margin-left: 15px">
+
+        <h4>Fotocopy Passport</h4>
+        <form method="post" action="server/uploadcv.php" enctype="multipart/form-data">
+          <input id="filename4" type="text"  class="form-control" disabled="">
+          <input id="upload4" type="file" name="myfile"> <br>
+          <button class="btn btn-success" type="submit name="save4" style="margin-top: 5px; margin-bottom: 10px;">Upload</button>
+        </form>
+      </div>
+
+      <div class="col" style="margin-left: 60px">
+        <h4>Fotocopy Visa</h4>
+        <form method="post" action="server/uploadcv.php" enctype="multipart/form-data">
+          <input id="filename4" type="text"  class="form-control" disabled="">
+          <input id="upload4" type="file" name="myfile"> <br>
+          <button class="btn btn-success" type="submit name="save4" style="margin-top: 5px; margin-bottom: 10px;">Upload</button>
+        </form>
+      </div>
+
+      <div class="col">
+        <h4>Fotocopy Kartu Keluarga</h4>
+        <form method="post" action="server/uploadcv.php" enctype="multipart/form-data">
+          <input id="filename4" type="text"  class="form-control" disabled="">
+          <input id="upload4" type="file" name="myfile"> <br>
+          <button class="btn btn-success" type="submit name="save4" style="margin-top: 5px; margin-bottom: 10px;">Upload</button>
+        </form>
+      </div>
+
+
     </div>
     </div>
     </div>
