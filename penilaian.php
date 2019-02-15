@@ -1,4 +1,22 @@
-<?php ?>
+<?php 
+  session_start();
+
+  $db = mysqli_connect('localhost', 'root', '', 'registration');
+  
+  $nip = $_REQUEST['nip'];
+  $_SESSION["login_user"] = $nip;
+
+  $sql = "SELECT * FROM users WHERE nip='$nip'";
+  $query = mysqli_query($db, $sql);
+  while ($row = mysqli_fetch_array($query)){
+    $nama = $row['nama'];
+    $nip = $row['nip'];
+    $judul = $row['judul'];
+    $unit = $row['unit'];
+    $jabatan = $row['jabatan'];
+    $grade = $row['grade'];
+  }
+?>
 
 <!DOCTYPE html>
 <html>
@@ -41,24 +59,20 @@
     <div class="col-xl-3 col-sm-6 col-mb-3">
       <form>
         <h4>Profile</h4>
+        
+        <?php #disini nanti kode mu yg panggil sesuai id dari halaman sebelah ?>
+
         <label for="nama">Nama:</label>
-        <input type="text" name="nama" placeholder="" required class="form-control" value="" disabled="" />
+        <input type="text" name="nama" placeholder="" required class="form-control" value="<?php echo ($nama); ?>" disabled="" />
         <br>
         <label for="nip">NIP:</label>
-        <input type="text" name="nip" placeholder="" required class="form-control" value="" disabled="" />
+        <input type="text" name="nip" placeholder="" required class="form-control" value="<?php echo ($nip); ?>" disabled="" />
         <br>
         <label for="judul">Judul UPK:</label>
-        <input type="text" name="judul" placeholder="" required class="form-control" value="" disabled="" />
+        <input type="text" name="judul" placeholder="" required class="form-control" value="<?php echo ($judul); ?>" disabled="" />
         <br>
-        <select name="berkas" class="custom-select mb-3">
-          <option selected>Download Berkas</option>
-          <option value="berkas1">Berkas 1</option>
-          <option value="berkas2">Berkas 2</option>
-          <option value="berkas3">Berkas 3</option>
-          <option value="berkas4">CV</option>
-        </select>
       </form>
-      <button type="submit" class="btn btn-primary">Unduh</button>
+      <a type="submit" class="btn btn-primary" name="don" href="server/donlod.php">Unduh Semua Berkas</a>
     </div>
     <div class="col-xl-3 col-sm-4 col-mb-3" style="margin-left: 50px;">
       <form>
@@ -76,34 +90,33 @@
         <div class="row">
           <div class="col-8">
             <label for="bobot" style="font-size: 12px; text-align: center">Bobot Lulus Seleksi Administrasi</label>
-            <input type="text" maxlength="2" name="bobotL" placeholder="" required class="form-control" value="" id="bobotL"/>
+            <input type="text" maxlength="2" onKeyUp="if(this.value>20){this.value='20';}else if(this.value<0){this.value='0';}" name="bobotL" placeholder="" required class="form-control" value="" id="bobotL"/>
           </div>
         </div>
         <br>
         <div class="row">
           <div class="col-4">
             <label for="nilaiA">A:</label>
-            <input type="text" maxlength="2" name="nilaiA" placeholder="" required class="form-control" value="" id="na" />
+            <input type="text" maxlength="2" onKeyUp="if(this.value>10){this.value='10';}else if(this.value<0){this.value='0';}" name="nilaiA" placeholder="" required class="form-control" value="" id="na" />
           </div>
           <div class="col-4">
             <label for="nilaiB">B:</label>
-            <input type="text" maxlength="2" name="nilaiB" placeholder="" required class="form-control" value="" id="nb" />
+            <input type="text" maxlength="2" onKeyUp="if(this.value>10){this.value='10';}else if(this.value<0){this.value='0';}" name="nilaiB" placeholder="" required class="form-control" value="" id="nb" />
           </div>
         </div>
         <div class="row">
           <div class="col-4">
             <label for="nilaiC">C:</label>
-            <input type="text" maxlength="2" name="nilaiC" placeholder="" required class="form-control" value="" id="nc"/>
+            <input type="text" maxlength="2" onKeyUp="if(this.value>10){this.value='10';}else if(this.value<0){this.value='0';}" name="nilaiC" placeholder="" required class="form-control" value="" id="nc"/>
           </div>
           <div class="col-4">
             <label for="nilaiD">D:</label>
-            <input type="text" maxlength="2" name="nilaiD" placeholder="" required class="form-control" value="" id="nd"/>
+            <input type="text" maxlength="2" onKeyUp="if(this.value>10){this.value='10';}else if(this.value<0){this.value='0';}" name="nilaiD" placeholder="" required class="form-control" value="" id="nd"/>
           </div>
         </div>
-        
         <br>
       </form>
-      <button type="submit" class="btn btn-success" onclick="getVal()">Submit</button>
+      <button type="submit" class="btn btn-success" onclick="getVal()">Nilai</button>
     </div>
     <div class="col-6" style="margin-left: -50px;">
       <h4>Tabel Penilaian</h4>
@@ -146,11 +159,11 @@
                     <tbody style="text-align: center; font-size: 12px;">
                       <tr class="odd" role="row">
                         <td>1</td>
-                        <td style="text-align: center;">NamaTest</td>
-                        <td style="text-align: center;">DB123</td>
-                        <td style="text-align: center;">Database</td>
-                        <td style="text-align: center;">Database</td>
-                        <td style="text-align: center;">Database</td>
+                        <td style="text-align: center;"><?php echo $nama; ?></td>
+                        <td style="text-align: center;"><?php echo $nip; ?></td>
+                        <td style="text-align: center;"><?php echo $unit; ?></td>
+                        <td style="text-align: center;"><?php echo $jabatan; ?></td>
+                        <td style="text-align: center;"><?php echo $grade; ?></td>
                         <td id="bobotLulus" style="text-align: center;"> </td>
                         <td id="kolA" style="text-align: center;"> </td>
                         <td id="kolB" style="text-align: center;"> </td>
@@ -162,7 +175,11 @@
                       </tr>
                     </tbody>
                   </table>
-                  <p id="tanggal"></p>
+                  <div>
+                    <p class="d-flex justify-content-end" style="margin-right: 50px" id="tanggal" style=""></p>
+                    <p class="d-flex justify-content-end" style="margin-right: 90px; margin-top: -15px">Penilai</p><br><br><br>
+                    <p class="d-flex justify-content-end" style="margin-right: 65px">..............................</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -170,21 +187,22 @@
         </div>
         <button type="submit" class="btn btn-primary" onclick="printContent('print')">Unduh</button>
         <button type="submit" class="btn btn-success" onclick="tableToExcel('tblData')">Export</button>
-        <button type="submit" class="btn btn-primary">Berita Acara</button>
+        <button type="submit" class="btn btn-primary" onclick="show()">Berita Acara</button>
     </div>
   </div>
 </div>
 <script type="text/javascript">
 
-var bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-var tanggal = new Date().getDate();
-var _bulan = new Date().getMonth();
-var _tahun = new Date().getYear();
-var bulan = bulan[_bulan];
-var tahun = (_tahun < 1000) ? _tahun + 1900 : _tahun;
+//tanggal
+    var bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+    var tanggal = new Date().getDate();
+    var _bulan = new Date().getMonth();
+    var _tahun = new Date().getYear();
+    var bulan = bulan[_bulan];
+    var tahun = (_tahun < 1000) ? _tahun + 1900 : _tahun;
+    document.getElementById("tanggal").innerHTML = (tanggal + ' ' + bulan + ' ' + tahun);
 
-document.getElementById("tanggal").innerHTML = (tanggal + ' ' + bulan + ' ' + tahun);
-
+//input
   function getVal(){
     var seP = Number("10")
     var nA = Number(document.getElementById("na").value);
@@ -196,7 +214,7 @@ document.getElementById("tanggal").innerHTML = (tanggal + ' ' + bulan + ' ' + ta
     }
     var nB = Number(document.getElementById("nb").value);
     if (nB >= "10"){
-      document.getElementById("kolB").innerHTML = seP;  
+      document.getElementById("kolB").innerHTML = seP;
     }
     else{
     document.getElementById("kolB").innerHTML = nB;
@@ -250,6 +268,8 @@ document.getElementById("tanggal").innerHTML = (tanggal + ' ' + bulan + ' ' + ta
       alert("masukkan data");
     }
 }
+
+//eksport ke excel
   var tableToExcel = (function() {
   var uri = 'data:application/vnd.ms-excel;base64,'
     , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
@@ -260,7 +280,6 @@ document.getElementById("tanggal").innerHTML = (tanggal + ' ' + bulan + ' ' + ta
     var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
     window.location.href = uri + base64(format(template, ctx))
   }
-
 
 })()
 </script>

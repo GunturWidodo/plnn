@@ -169,16 +169,15 @@ include ('server/serverbio.php');
             }
            ?>
            </h3>
-        <form method="post" action="server/uploadcv.php" enctype="multipart/form-data">
+        <form method="post" action="server/uploadBerkas4.php" enctype="multipart/form-data">
           <input id="filename4" type="text"  class="form-control" disabled="">
           <input id="upload4" type="file" name="myfile"> <br>
-          <button class="btn btn-info" type="submit name="save4" style="margin-top: 5px; margin-bottom: 10px;">Upload</button>
+          <button class="btn btn-info" type="submit" name="save4" style="margin-top: 5px;">Upload</button>
         </form>
       </div>
     </div>
     </div>
     </div>
-    <a class="btn btn-info" type="submit" name="don" href="server/donlod.php" style="margin-top: 5px; margin-bottom: 10px;">Dl</a>
   </div>
 </div>
 </body>

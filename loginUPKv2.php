@@ -28,14 +28,14 @@
       <a class="btn btn-warning ml-auto" href="admin.php" role="button" style="color: #008C9E;">Logout</a>          
   </nav>
   </div>
-	<div class="jumbotron">
-		<h1 style="color: black;">Selamat Datang !</h1>
-	</div>
+  <div class="jumbotron">
+    <h1 style="color: black;">Selamat Datang !</h1>
+  </div>
 
-	<div>
-		<h2 style="margin-left: 36%;">Daftar Peserta Penilaian UPK</h2>
-		<hr id="garis">
-	</div>
+  <div>
+    <h2 style="margin-left: 36%;">Daftar Peserta Penilaian UPK</h2>
+    <hr id="garis">
+  </div>
 
   <div class="tabelnilai">
     <div class="container">
@@ -76,11 +76,11 @@
                     <tbody style="text-align: center;">
                       <tr class="odd" role="row">
                         <?php while($row2= mysqli_fetch_array($result2)) :   ?>
-                          <td><?php echo $id = $row2["id"]; ?></td>
+                          <td><?php echo $row2["id"]; ?></td>
                           <td><?php echo $row2["nama"]; ?></td>
-                          <td><?php echo $row2["nip"]; ?></td>
+                          <td><?php echo $nip = $row2["nip"]; ?></td>
                         <?php #bgmana caranya link href dengan id yang bersesuaian  ?>
-                        <td><a href="penilaian.php?id=<?php echo $id?>">Mulai Penilaian</a></td>
+                        <td><a href="penilaian.php?nip=<?php echo $nip?>">Mulai Penilaian</a></td>
                       </tr>
                       <?php endwhile; ?>
                     </tbody>
