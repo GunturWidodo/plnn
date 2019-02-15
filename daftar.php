@@ -37,13 +37,13 @@
 
           <input type="text" name="grade" placeholder="Grade" required class="form-control input-lg" value="" />
 
-          <input type="text" name="tanggal" placeholder="Tanggal Grade Terakhir" required class="form-control input-lg" value="" />
+          <input type="date" name="tanggal" placeholder="Tanggal Grade Terakhir" required class="form-control input-lg" value="" />
 
           <input type="text" name="judul" placeholder="Judul UPK" required class="form-control input-lg" value="" />
 
           <input type="password" class="form-control input-lg" name="password" placeholder="Password" required="" />
 
-          <input type="password2" class="form-control input-lg" name="password2" placeholder="Konfirmasi Password" required="" />
+          <input type="password" class="form-control input-lg" name="password2" placeholder="Konfirmasi Password" required="" />
 
           <div class="pwstrength_viewport_progress"></div>
           
