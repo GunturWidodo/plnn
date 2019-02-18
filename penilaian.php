@@ -1,6 +1,7 @@
 <?php 
-  include('server/server.php');
   $id = $_REQUEST['nip'];
+  $kategori = "";
+  include('server/server.php');
 
   $sql = "SELECT * FROM users WHERE nip='$id'";
   $query = mysqli_query($db, $sql);
@@ -73,7 +74,7 @@
       <button type="submit" class="btn btn-primary">Unduh Semua Berkas</button>
     </div>
     <div class="col-xl-3 col-sm-4 col-mb-3" style="margin-left: 50px;">
-      <form method="post">
+      <form action="#" method="post">
         <h4>Nilai</h4>
         <div class="row">
           <div class="col-4">
@@ -113,8 +114,13 @@
           </div>
         </div>
         <br>
+        <button type="submit" name="nilai" class="btn btn-success" onclick="getVal()">Nilai</button>
       </form>
-      <button type="submit" name="nilai" class="btn btn-success" onclick="getVal()">Nilai</button>
+      <!--
+
+
+
+        -->
     </div>
       
     <div class="col-6" style="margin-left: -50px;">
@@ -128,7 +134,7 @@
                   <table id="tblData" class="table table-bordered dataTable" role="grid" style="width: 100%" width="100%" cellspacing="0">
                     <thead style="text-align: center; font-size: 12px;">
                       <tr>
-                        <th class="sortting_asc" style="text-align: left;" tabindex="0" rowspan="1" colspan="14" id="setKategori"> </th>
+                        <th class="sortting_asc" style="text-align: left;" tabindex="0" rowspan="1" colspan="14" id="setKategori"><?php echo 'Kategori UPK: '.$kategori.'' ?></th>
                       </tr>
                       <tr role="row">
                         <th class="sortting_asc align-middle" tabindex="0" rowspan="3" colspan="1" width="50px" style="text-align: center;">No</th>
@@ -186,65 +192,6 @@
   </div>
 </div>
 <script type="text/javascript">
-  function getVal(){
-    var seP = Number("10")
-    var nA = Number(document.getElementById("na").value);
-    if (nA >= "10"){
-      document.getElementById("kolA").innerHTML = seP; 
-    } else{
-    document.getElementById("kolA").innerHTML = nA;
-    }
-    var nB = Number(document.getElementById("nb").value);
-    if (nB >= "10"){
-      document.getElementById("kolB").innerHTML = seP;  
-    } else{
-    document.getElementById("kolB").innerHTML = nB;
-    }
-
-    var nC = Number(document.getElementById("nc").value);
-    if (nC >= "10"){
-      document.getElementById("kolC").innerHTML = seP;  
-    } else{
-    document.getElementById("kolC").innerHTML = nC;
-    }
-
-    var nD = Number(document.getElementById("nd").value);
-    if (nD >= "10"){
-      document.getElementById("kolD").innerHTML = seP;  
-    } else{
-    document.getElementById("kolD").innerHTML = nD;
-    }
-    
-    var bob = Number(document.getElementById("bobot").value);
-
-    document.getElementById("setBobot").innerHTML = bob;
-
-    var bobL = Number(document.getElementById("bobotL").value);
-    var duaP = Number("20");
-    if (bobL >= "20") {
-      document.getElementById("bobotLulus").innerHTML = duaP;
-    } else {
-      document.getElementById("bobotLulus").innerHTML = bobL;
-    }
-    var kat = document.getElementById("kategori").value;
-    document.getElementById("setKategori").innerHTML = 'Kategori UPK: ' + kat;
-
-    var total = bobL+nA+nB+nC+nD+bob;
-    document.getElementById("nilai").innerHTML = total;
-
-    if (total < 75) {
-      document.getElementById("pres").innerHTML = "Ya";
-    } else {
-      document.getElementById("pres").innerHTML = "Tidak";
-    }
-
-    if (na.value.length!=0 && nb.value.length!=0 && nc.value.length!=0 && nd.value.length!=0){
-      //alert("Data telah ditambahkan");
-      return false;
-    } else{
-      alert("masukkan data");
-    }
-}
   var tableToExcel = (function() {
   var uri = 'data:application/vnd.ms-excel;base64,'
     , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
@@ -256,7 +203,7 @@
     window.location.href = uri + base64(format(template, ctx))
   }
 
-})()
+})
 </script>
 </body>
 </html>
