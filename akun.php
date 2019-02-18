@@ -89,6 +89,7 @@
         <div class="card-header">
           <i class="fas fa-table"></i>
           Rekap Pendaftar
+          <div class="d-flex justify-content-end" style="margin-top: -25px;"><a class="btn btn-info ml-auto" href="server/exportAkun.php" role="button">Eksport Tabel</a></div>
         </div>
         <!--Table-->
         <div class="card-body">
@@ -139,7 +140,7 @@
                         $halaman = 20;
                         $page = isset($_GET['halaman'])? (int)$_GET["halaman"]:1;
                         $mulai = ($page>1) ? ($page * $halaman) - $halaman : 0;
-                        $query2 = mysqli_query($db, "SELECT * FROM users WHERE usertype = 'peserta' OR usertype = '' LIMIT $mulai, $halaman");
+                        $query2 = mysqli_query($db, "SELECT * FROM users LIMIT $mulai, $halaman");
                         $sql = mysqli_query($db, $query1);
                         $total = mysqli_num_rows($sql);
                         $pages = ceil($total/$halaman);
