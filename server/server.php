@@ -1,4 +1,5 @@
 <?php 
+	#session_start();
 
 	//membuat koneksi ke database
 	$db = mysqli_connect('localhost', 'root', '', 'registration');
@@ -13,25 +14,15 @@
 		$tanggal = mysqli_real_escape_string($db, $_POST['tanggal']);
 		$judul = mysqli_real_escape_string($db, $_POST['judul']);
 		$password = mysqli_real_escape_string($db, $_POST['password']);
-		$password2 = mysqli_real_escape_string($db, $_POST['password2']);
+
 		$password = sha1($password);
-		$password2 = sha1($password2);
+		$sql = "INSERT INTO users (nama, nip, unit, jabatan, grade, tanggal, judul, password) VALUES ('$nama', '$nip', '$unit', '$jabatan', '$grade', '$tanggal', '$judul', '$password')";
+		mysqli_query($db, $sql);
 
-		$sql = "INSERT INTO users (nama, nip, unit, jabatan, grade, tanggal, judul, password) VALUES ('$nama', '$nip', '$unit', '$jabatan', '$grade', '$tanggal','$judul', '$password')";
-
-		if($password != $password2){
-			echo '<script language="javascript">';
-			echo 'alert("Konvirmasi password tidak cocok")';
-			echo '</script>';
-			
-		}
-		else if ($password == $password2){
-			mysqli_query($db, $sql);
-			header('location: login.php');	
-		}
+		header('location: login.php');	
 	}
 
-		if (isset($_POST['simpan'])) {
+	if (isset($_POST['simpan'])) {
 		$nip = mysqli_real_escape_string($db, $_POST['nip']);
 		$nama = mysqli_real_escape_string($db, $_POST['nama']);
 		$jabatan = mysqli_real_escape_string($db, $_POST['jabatan']);
@@ -51,17 +42,17 @@
 	}
 
 	if (isset($_POST['nilai'])) {
-		$lulus = mysqli_real_escape_string($db, $_POST['bobotL']);
-		$a = mysqli_real_escape_string($db, $_POST['nilaiA']);
-		$b = mysqli_real_escape_string($db, $_POST['nilaiB']);
-		$c = mysqli_real_escape_string($db, $_POST['nilaiC']);
-		$d = mysqli_real_escape_string($db, $_POST['nilaiD']);
-		$bobot = mysqli_real_escape_string($db, $_POST['bobot']);
-		
-		$sql = "UPDATE users SET lulus=$lulus, a='$a',b='$b',c='$c',d='$d', bobot='$bobot' WHERE nip='$id'";
+		$kategori = mysqli_real_escape_string($db, $_POST['kategori']);
+		$lulus = (int)mysqli_real_escape_string($db, $_POST['bobotL']);
+		$a = (int)mysqli_real_escape_string($db, $_POST['nilaiA']);
+		$b = (int)mysqli_real_escape_string($db, $_POST['nilaiB']);
+		$c = (int)mysqli_real_escape_string($db, $_POST['nilaiC']);
+		$d = (int)mysqli_real_escape_string($db, $_POST['nilaiD']);
+		$bobot = (int)mysqli_real_escape_string($db, $_POST['bobot']);
+		$nilai = $lulus+$a+$b+$c+$d+$bobot;
+		$presentasi = ($nilai > 20 ? "-" : "ya");
+
+		$sql = "UPDATE users SET lulus=$lulus, a='$a',b='$b',c='$c',d='$d', bobot='$bobot', nilai='$nilai', presentasi='$presentasi' WHERE nip='$id'";
 		mysqli_query($db, $sql);
-		echo '<script language="javascript">';
-		echo 'alert("'.$id.'")';
-		echo '</script>';
 	}
   ?>
