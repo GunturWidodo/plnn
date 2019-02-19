@@ -7,15 +7,13 @@
   }
   $searchquery = "";
 
-
   $db = mysqli_connect('localhost', 'root', '', 'registration');
   $query3 = "SELECT * FROM sertifikasi";
   $result2 = mysqli_query($db, $query3);
   if (!$result2) {
     printf("Error: %s\n", mysqli_error($db));
     exit();
-  }
-  
+  }  
  ?>
 
 <!DOCTYPE html>
