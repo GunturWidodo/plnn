@@ -14,23 +14,12 @@
 		$tanggal = mysqli_real_escape_string($db, $_POST['tanggal']);
 		$judul = mysqli_real_escape_string($db, $_POST['judul']);
 		$password = mysqli_real_escape_string($db, $_POST['password']);
-		$password2 = mysqli_real_escape_string($db, $_POST['password2']);
+
 		$password = sha1($password);
-		$password2 = sha1($password2);
-		
 		$sql = "INSERT INTO users (nama, nip, unit, jabatan, grade, tanggal, judul, password) VALUES ('$nama', '$nip', '$unit', '$jabatan', '$grade', '$tanggal', '$judul', '$password')";
 		mysqli_query($db, $sql);
-		
-		if($password != $password2){
-			echo '<script language="javascript">';
-			echo 'alert("Konfirmasi password tidak cocok")';
-			echo '</script>';
-			
-		}
-		else if ($password == $password2){
-			mysqli_query($db, $sql);
-			header('location: login.php');	
-		}
+
+		header('location: login.php');	
 	}
 
 	if (isset($_POST['simpan'])) {
@@ -63,7 +52,7 @@
 		$nilai = $lulus+$a+$b+$c+$d+$bobot;
 		$presentasi = ($nilai > 20 ? "-" : "ya");
 
-		$sql = "UPDATE users SET lulus=$lulus, a='$a',b='$b',c='$c',d='$d', bobot='$bobot', nilai='$nilai', presentasi='$presentasi' WHERE nip='$id'";
+		$sql = "UPDATE users SET lulus='$lulus', a='$a',b='$b',c='$c',d='$d', bobot='$bobot', nilai='$nilai', presentasi='$presentasi' WHERE nip='$id'";
 		mysqli_query($db, $sql);
 	}
   ?>

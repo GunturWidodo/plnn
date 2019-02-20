@@ -52,29 +52,4 @@ if (isset($_POST['save'])) {
         }
     }
 }
-
-// Download file
-/*if (isset ($_GET['file_id'])) {
-    $id = $_GET['file_id']; 
-
-    //mengambil file
-    $sql = "SELECT * FROM sertifikasi WHERE id=$id";
-    $result = mysqli_query($conn, $sql);  
-
-    $file = mysqli_fetch_assoc($result);
-    $filepath = 'upload/' . $file['download'];
-
-    if (file_exists($filepath)) {
-        header('Content-Description: File Transfer');
-        header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename='. basename($filepath));
-        header('Expires: 0');
-        header('Cache-Control: must-revalidate');
-        header('Pragma: public');
-        header('Content-Length:' . filesize('upload/' . $file['download']));
-        readfile('upload/' . $file['download']);
-    }
-    
-    exit;
-}*/
 ?>

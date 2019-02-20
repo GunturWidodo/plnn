@@ -1,11 +1,10 @@
 <?php
 	session_start();
-	$con = mysqli_connect('localhost', 'root', '', 'registration');
-	$db = mysqli_select_db($con,"registration");
+	$db = mysqli_connect('localhost', 'root', '', 'registration');
 
 	$user = $_SESSION["login_user"];
 	$sql = "SELECT * FROM users WHERE nip='$user'";
-	$query = mysqli_query($con, $sql);
+	$query = mysqli_query($db, $sql);
 	while ($row = mysqli_fetch_array($query)){
 		$nama = $row['nama'];
 		$nip = $row['nip'];

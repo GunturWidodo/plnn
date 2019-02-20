@@ -18,9 +18,10 @@
 		if (mysqli_num_rows($result) == 1) {
 			if ($usertype == "admin") {
 				$_SESSION["admin"] = $nip;
+				$_SESSION["login_user"] = $nip;
 				header('location: admin.php');
 			} else if ($usertype == "penguji") {
-				#$_SESSION["login_user"] = $nip;
+				#$_SESSION["penguji"] = $nip;
 				header('location: loginUPKv2.php');
 			} else {
 				$_SESSION["login_user"] = $nip;
