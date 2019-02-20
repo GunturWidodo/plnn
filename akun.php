@@ -89,7 +89,6 @@
         <div class="card-header">
           <i class="fas fa-table"></i>
           Rekap Pendaftar
-          <div class="d-flex justify-content-end" style="margin-top: -25px;"><a class="btn btn-info ml-auto" href="server/exportAkun.php" role="button">Eksport Tabel</a></div>
         </div>
         <!--Table-->
         <div class="card-body">
@@ -98,8 +97,20 @@
               <div class="row">
                 <div id="dataTable_filter" class="dataTables_filter" style="margin-left: 20px; margin-bottom: 10px">
                   <label>Search:</label>
+                  <?php 
+                    if (isset($_GET['search'])) {
+                      $searchquery=$_GET['search'];
+                    }
+                  ?>
+                  <script type="text/javascript">
+                    document.onkeydown=function(evt){
+                      var keyCode = evt ? (evt.which ? evt.which : evt.keyCode) : event.keyCode;
+                      if (keyCode == 13) {
+                        document.formsearch.submit();
+                      }
+                    }
+                  </script>
                   <input class="form-control form-control-sm" type="search" placeholder="" aria-controls="dataTable">
-                  <a class="btn btn-primary" href="login.php" role="button" style="margin-top: 5px">Cari</a>
                 </div>
               </div>
               <div class="row">
@@ -130,21 +141,7 @@
                     <tbody style="text-align: center;">
                       <?php
                         include('server/server.php');
-                        $query1 = "SELECT * FROM users";
-                        $result1 = mysqli_query($db, $query1);
-                        if (!$result1) {
-                          printf("Error: %s\n", mysqli_error($db));
-                          exit();
-                        }
-
-                        $halaman = 20;
-                        $page = isset($_GET['halaman'])? (int)$_GET["halaman"]:1;
-                        $mulai = ($page>1) ? ($page * $halaman) - $halaman : 0;
-                        $query2 = mysqli_query($db, "SELECT * FROM users WHERE usertype = 'peserta' OR usertype = '' LIMIT $mulai, $halaman");
-                        $sql = mysqli_query($db, $query1);
-                        $total = mysqli_num_rows($sql);
-                        $pages = ceil($total/$halaman);
-                        $no = $mulai+1;
+                        include('server/loadakun.php');
 
                         while($row1 = mysqli_fetch_assoc($query2)):
                       ?>
