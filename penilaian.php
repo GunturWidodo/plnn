@@ -71,7 +71,8 @@
         <input type="text" name="judul" placeholder="" required class="form-control" value="<?php echo ($judul); ?>" disabled="" />
         <br>
       </form>
-      <button type="submit" class="btn btn-primary">Unduh Semua Berkas</button>
+      <!--<a class="btn btn-info" type="submit" name="don" href="server/donlod.php" style="margin-top: 5px; margin-bottom: 10px;">Unduh Semua Berkas</a>-->
+      <button type="submit" name="don" onclick="window.location.href='server/donlod.php'" class="btn btn-primary">Unduh Semua Berkas</button>
     </div>
     <div class="col-xl-3 col-sm-4 col-mb-3" style="margin-left: 50px;">
       <form action="#" method="post">
@@ -116,11 +117,6 @@
         <br>
         <button type="submit" name="nilai" class="btn btn-success" onclick="getVal()">Nilai</button>
       </form>
-      <!--
-
-
-
-        -->
     </div>
       
     <div class="col-6" style="margin-left: -50px;">
@@ -202,8 +198,7 @@
     var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
     window.location.href = uri + base64(format(template, ctx))
   }
-
-})
+})()
 </script>
 </body>
 </html>
