@@ -183,7 +183,6 @@
         </div>
         <button type="submit" class="btn btn-primary" onclick="printContent('print')">Unduh</button>
         <button type="submit" class="btn btn-success" onclick="tableToExcel('tblData')">Export</button>
-        <button type="submit" class="btn btn-primary">Berita Acara</button>
     </div>
   </div>
 </div>
