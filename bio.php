@@ -117,7 +117,7 @@
               }
              ?>
              </h5>
-          <form method="post" action="server/uploadBerkas2.php" enctype="multipart/form-data">
+          <form method="post" action="server/uploadBerkas.php" enctype="multipart/form-data">
             <input id="filename2" type="text" class="form-control" disabled="">
             <input style="padding:10px 0" id="upload2" type="file" name="myfile"> <br>
             <button class="btn btn-info" type="submit" name="save2">Upload</button>
@@ -139,7 +139,7 @@
             }
            ?>
         </h5>
-          <form method="post" action="server/uploadBerkas3.php" enctype="multipart/form-data">
+          <form method="post" action="server/uploadBerkas.php" enctype="multipart/form-data">
             <input id="filename3" type="text"  class="form-control" disabled="">
             <input style="padding:10px 0" id="upload3" type="file" name="myfile"> <br>
             <button class="btn btn-info" type="submit" name="save3">Upload</button>
@@ -159,7 +159,7 @@
               }
              ?>
           </h5>
-          <form method="post" action="server/uploadcv.php" enctype="multipart/form-data">
+          <form method="post" action="server/uploadBerkas.php" enctype="multipart/form-data">
             <input id="filename4" type="text"  class="form-control" disabled="">
             <input style="padding:10px 0" id="upload4" type="file" name="myfile"> <br>
             <button class="btn btn-info" type="submit" name="save4" style="margin-bottom: 50px;">Upload</button>
