@@ -7,13 +7,12 @@
   }
   $searchquery = "";
 
-  $db = mysqli_connect('localhost', 'root', '', 'registration');
   $query3 = "SELECT * FROM sertifikasi";
   $result2 = mysqli_query($db, $query3);
   if (!$result2) {
     printf("Error: %s\n", mysqli_error($db));
     exit();
-  }  
+  }
  ?>
 
 <!DOCTYPE html>
@@ -35,7 +34,6 @@
   <!--Font Awesome-->
   <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-
 </head>
 <body>
 <div id="nav">
@@ -150,19 +148,19 @@
                         while($row1 = mysqli_fetch_assoc($query2)):
                       ?>
                       <tr class="odd" role= "row">
-                        <td><?php echo $row1["id"]; ?></td>
-                        <td><?php echo $nip = $row1["nip"]; ?></td>
+                        <td><?php echo $row1["no"]; ?></td>
+                        <td><?php echo $id = $row1["nip"]; ?></td>
                         <td><?php echo $row1["nama"]; ?></td>
                         <td><?php echo $row1["jabatan"]; ?></td>
                         <td><?php echo $row1["unit"]; ?></td>
-                        <td><?php echo $row1["kode_sertifikasi"]; ?></td>
                         <td><?php echo $row1["judul_sertifikasi"]; ?></td>
+                        <td><?php echo $row1["kode_sertifikasi"]; ?></td>
                         <td><?php echo $row1["pelaksana"]; ?></td>
                         <td><?php echo $row1["no_sertifikasi"]; ?></td>
                         <td><?php echo $row1["masa_berlaku"]; ?></td>
                         <td><?php echo $row1["sampai_dengan"]; ?></td>
                         <td><?php echo $row1["keterangan"]; ?></td>
-                        <td><a href="editsertifikasi.php?nip=<?php echo $nip?>">Edit</a></td>
+                        <td><a href="editsertifikasi.php?nip=<?php echo $id?>">Edit</a></td>
                       </tr>
                       <?php endwhile; ?>
                     </tbody>                      
@@ -211,7 +209,6 @@
                       }
                     }
                     ?>
-
                     </ul>
                   </div>
                 </div>
@@ -290,7 +287,7 @@
                   <div class="row">
                     <div class="col-5" style="margin-left: 15px"></div><br>
                     <div class="col-5 ml-auto">
-                      <button type="submit" name="save" class="btn btn-success">Simpan</button> 
+                      <button type="submit" name="simpan" class="btn btn-success">Simpan</button> 
                     </div>
                   </div>
                 </form>
@@ -322,9 +319,11 @@
           $('#sidebar').toggleClass('active');
       });
   });
+
     function jumpScroll() {
       window.scroll(0,5700); // horizontal and vertical scroll targets
     }
+
     $('costumefileUp').on('change',function(){
                   //get the file name
                   var fileName = $(this).val();
