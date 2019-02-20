@@ -1,30 +1,70 @@
 <?php
-session_start();
+    session_start();
 
-//koneksi database
-$conn = mysqli_connect('localhost', 'root', '', 'registration');
+    //koneksi database
+    $conn = mysqli_connect('localhost', 'root', '', 'registration');
 
-$user = $_SESSION["login_user"];
-$sql = "SELECT * FROM users";
-$result = mysqli_query($conn, $sql);
+    $user = $_SESSION["login_user"];
+    $sql = "SELECT * FROM users";
+    $result = mysqli_query($conn, $sql);
 
-$files = mysqli_fetch_assoc($result);
+    $files = mysqli_fetch_assoc($result);
 
-// Upload file
-if (isset($_POST['save'])) {
-    // nama file
-    $filename1 = $_FILES['myfile']['name'];
+    // Upload file
+    if (isset($_POST['save'])) {
+        // nama file
+        $filename1 = $_FILES['myfile']['name'];
 
-    // ekstensi file
-    $extension = pathinfo($filename1, PATHINFO_EXTENSION);
+        // ekstensi file
+        $extension = pathinfo($filename1, PATHINFO_EXTENSION);
 
-    $file = $_FILES['myfile']['tmp_name'];
-    $size = $_FILES['myfile']['size'];
+        $file = $_FILES['myfile']['tmp_name'];
+        $size = $_FILES['myfile']['size'];
 
-    $time = time();
-    $ran = rand();
-    $filename = $ran.$time.$filename1;
-    
+        //$time = time();
+        $ran = mt_rand();
+        $filename = $ran.$filename1;
+    } else if (isset($_POST['save2'])) {
+        // nama file
+        $filename1 = $_FILES['myfile']['name'];
+
+        // ekstensi file
+        $extension = pathinfo($filename1, PATHINFO_EXTENSION);
+
+        $file = $_FILES['myfile']['tmp_name'];
+        $size = $_FILES['myfile']['size'];
+
+        //$time = time();
+        $ran = mt_rand();
+        $filename = $ran.$filename1;
+    } else if (isset($_POST['save3'])) {
+        // nama file
+        $filename1 = $_FILES['myfile']['name'];
+
+        // ekstensi file
+        $extension = pathinfo($filename1, PATHINFO_EXTENSION);
+
+        $file = $_FILES['myfile']['tmp_name'];
+        $size = $_FILES['myfile']['size'];
+
+        //$time = time();
+        $ran = mt_rand();
+        $filename = $ran.$filename1;
+    } else if (isset($_POST['cv'])) {
+        // nama file
+        $filename1 = $_FILES['myfile']['name'];
+
+        // ekstensi file
+        $extension = pathinfo($filename1, PATHINFO_EXTENSION);
+
+        $file = $_FILES['myfile']['tmp_name'];
+        $size = $_FILES['myfile']['size'];
+
+        //$time = time();
+        $ran = mt_rand();
+        $filename = $ran.$filename1;
+    }
+
     if(!file_exists("../upload/berkas/". $_SESSION["login_user"] ."/")){
         mkdir("../upload/berkas/". $_SESSION["login_user"] ."/");
     }
@@ -40,16 +80,31 @@ if (isset($_POST['save'])) {
         if (move_uploaded_file($file, $destination)) {
             $sql = "UPDATE users SET berkas1 = '$filename' WHERE nip='$user'";
             if (mysqli_query($conn, $sql)) { 
-?>
-                <script type="text/javascript">
+                if (isset($_POST['save'])) {
+                    echo "<script type=\"text/javascript\">
                     alert('Berhasil Mengupload Berkas 1');
                     window.location.href='../bio.php';
-                </script>
-            <?php     
+                    </script>";
+                } else if (isset($_POST['save2'])) {
+                    echo "<script type=\"text/javascript\">
+                    alert('Berhasil Mengupload Berkas 2');
+                    window.location.href='../bio.php';
+                    </script>";
+                } else if (isset($_POST['save3'])) {
+                    echo "<script type=\"text/javascript\">
+                    alert('Berhasil Mengupload Berkas 3');
+                    window.location.href='../bio.php';
+                    </script>";
+                } else if (isset($_POST['cv'])) {
+                    echo "<script type=\"text/javascript\">
+                    alert('Berhasil Mengupload CV');
+                    window.location.href='../bio.php';
+                    </script>";
+                }
+                
             }
         } else {
             echo "Failed to upload file.";
         }
     }
-}
 ?>
