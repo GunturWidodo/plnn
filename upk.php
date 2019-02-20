@@ -89,7 +89,7 @@ include('server/serverlogin.php');
         <div class="card-header">
           <i class="fas fa-table"></i>
           Database UPK
-          <div class="d-flex justify-content-end" style="margin-top: -25px;"><a class="btn btn-info ml-auto" href="server/exportUpk.php" role="button"  >Eksport Tabel</a></div>
+        <div class="d-flex justify-content-end" style="margin-top: -25px;"><a class="btn btn-info ml-auto" href="server/exportUpk.php" role="button"  >Eksport Tabel</a></div>
         </div>
         <div class="card-body">
           <div class="table-responsive">
@@ -142,7 +142,6 @@ include('server/serverlogin.php');
                         $sql = mysqli_query($db, $query1);
                         $total = mysqli_num_rows($sql);
                         $pages = ceil($total/$halaman);
-                        $no = $mulai+1;
 
                         while($row1 = mysqli_fetch_assoc($query2)):
                       ?>
@@ -167,12 +166,12 @@ include('server/serverlogin.php');
                   </table>
                   <div class="page">
                     <ul class="pagination">
-<?php 
+                    <?php 
                       if($page > 1){
                         echo '<li class="page-item"><a class="page-link" href="?halaman='.($page-1).'">Prev</a></li>';
                       }
-?>
-<?php 
+                    ?>
+                    <?php 
                       for($i = 1; $i <= $pages; $i++){
                         if ((($i >= $page - 3) && ($i <= $page + 3)) || ($i == 1) || ($i == $pages)){
                           if($i==$pages && $page <= $pages-5) echo '<li class="page-item disabled"><a class="page-link" href="">...</a></li>';
@@ -181,12 +180,12 @@ include('server/serverlogin.php');
                           if($i==1 && $page >= 6) echo '<li class="page-item disabled"><a class="page-link" href="">...</a></li>';
                         }
                       }
-?>
-<?php 
+                    ?>
+                    <?php 
                       if($page < $pages){
                         echo '<li class="page-item"><a class="page-link" href="?halaman='.($page+1).'">Next</a></li>';
                       }
-?>
+                    ?>
                     </ul>
                   </div>
                 </div>
@@ -206,8 +205,7 @@ include('server/serverlogin.php');
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
     });
-
-});
+  });
 </script>
 </html>
 </body>

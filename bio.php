@@ -1,5 +1,5 @@
 <?php
-  include('server/serverlogin.php');
+  //include('server/serverlogin.php');
   include ('server/serverbio.php'); 
 ?>
 
@@ -102,28 +102,28 @@
             <button class="btn btn-info" type="submit" name="save">Upload</button>
           </form>
         </div>
-      <hr>
-      <div class="col">
-        <h5>Berkas 2 
-            <?php 
-            $query = mysqli_query($db, $sql);
-            while ($row = mysqli_fetch_array($query)) {
-              $berkas22 = $row['berkas2'];
-              if (!empty($berkas22)) {
-                echo '<i class="fas fa-check" style="color: #1ae03f;"></i>';
-              } else {
-                echo " ";
+        <hr>
+        <div class="col">
+          <h5>Berkas 2 
+              <?php 
+              $query = mysqli_query($db, $sql);
+              while ($row = mysqli_fetch_array($query)) {
+                $berkas22 = $row['berkas2'];
+                if (!empty($berkas22)) {
+                  echo '<i class="fas fa-check" style="color: #1ae03f;"></i>';
+                } else {
+                  echo " ";
+                }
               }
-            }
-           ?>
-           </h5>
-        <form method="post" action="server/uploadBerkas2.php" enctype="multipart/form-data">
-          <input id="filename2" type="text" class="form-control" disabled="">
-          <input style="padding:10px 0" id="upload2" type="file" name="myfile"> <br>
-          <button class="btn btn-info" type="submit" name="save2">Upload</button>
-        </form>
+             ?>
+             </h5>
+          <form method="post" action="server/uploadBerkas2.php" enctype="multipart/form-data">
+            <input id="filename2" type="text" class="form-control" disabled="">
+            <input style="padding:10px 0" id="upload2" type="file" name="myfile"> <br>
+            <button class="btn btn-info" type="submit" name="save2">Upload</button>
+          </form>
+        </div>
       </div>
-    </div>
       <hr>
       <div class="row">
         <div class="col">
@@ -138,34 +138,61 @@
               }
             }
            ?>
-           </h5>
-        <form method="post" action="server/uploadBerkas3.php" enctype="multipart/form-data">
-          <input id="filename3" type="text"  class="form-control" disabled="">
-          <input style="padding:10px 0" id="upload3" type="file" name="myfile"> <br>
-          <button class="btn btn-info" type="submit" name="save3">Upload</button>
-        </form>
+        </h5>
+          <form method="post" action="server/uploadBerkas3.php" enctype="multipart/form-data">
+            <input id="filename3" type="text"  class="form-control" disabled="">
+            <input style="padding:10px 0" id="upload3" type="file" name="myfile"> <br>
+            <button class="btn btn-info" type="submit" name="save3">Upload</button>
+          </form>
+        </div>
+        <hr>
+        <div class="col">
+          <h5>CV 
+              <?php 
+              $query = mysqli_query($db, $sql);
+              while ($row = mysqli_fetch_array($query)) {
+                if (!empty($row['cv'])) {
+                  echo '<i class="fas fa-check" style="color: #1ae03f;"></i>';
+                } else {
+                  echo " ";
+                }
+              }
+             ?>
+          </h5>
+          <form method="post" action="server/uploadcv.php" enctype="multipart/form-data">
+            <input id="filename4" type="text"  class="form-control" disabled="">
+            <input style="padding:10px 0" id="upload4" type="file" name="myfile"> <br>
+            <button class="btn btn-info" type="submit" name="save4" style="margin-bottom: 50px;">Upload</button>
+          </form>
+        </div>
       </div>
       <hr>
-      <div class="col">
-        <h5>CV 
+      <div class="row">
+        <div class="col">
+        <h5>Berkas 3 
             <?php 
             $query = mysqli_query($db, $sql);
             while ($row = mysqli_fetch_array($query)) {
-              if (!empty($row['cv'])) {
+              if (!empty($row['berkas3'])) {
                 echo '<i class="fas fa-check" style="color: #1ae03f;"></i>';
               } else {
                 echo " ";
               }
             }
            ?>
-           </h5>
-        <form method="post" action="server/uploadcv.php" enctype="multipart/form-data">
-          <input id="filename4" type="text"  class="form-control" disabled="">
-          <input style="padding:10px 0" id="upload4" type="file" name="myfile"> <br>
-          <button class="btn btn-info" type="submit" name="save4" style="margin-bottom: 50px;">Upload</button>
-        </form>
+        </h5>
+          <form method="post" action="server/uploadBerkas3.php" enctype="multipart/form-data">
+            <input id="filename3" type="text"  class="form-control" disabled="">
+            <input style="padding:10px 0" id="upload3" type="file" name="myfile"> <br>
+            <button class="btn btn-info" type="submit" name="save3">Upload</button>
+          </form>
+        </div>
+        <div class="col">
+          <h5>haaaaaaaa</h5>
+          <form action="server/uplod.php" method="post" enctype="multipart/form-data">ssssssss</form>
+
+        </div>
       </div>
-    </div>
     </div>
     </div>
   </div>
