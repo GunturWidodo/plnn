@@ -28,18 +28,23 @@
       <a class="btn btn-warning ml-auto" href="admin.php" role="button" style="color: #008C9E;">Logout</a>          
   </nav>
   </div>
-  <div class="jumbotron">
-    <h1 style="color: black;">Selamat Datang !</h1>
-  </div>
+	<div class="jumbotron">
+		<h1 style="color: black;">Selamat Datang !</h1>
+	</div>
 
-  <div>
-    <h2 style="margin-left: 36%;">Daftar Peserta Penilaian UPK</h2>
-    <hr id="garis">
-  </div>
+	<div>
+		<h2 style="margin-left: 36%;">Daftar Peserta Penilaian UPK</h2>
+		<hr id="garis">
+	</div>
 
   <div class="tabelnilai">
     <div class="container">
       <ul class="nav nav-pills" role="tablist">
+      <!--
+      nanti disini kasi kayak pagination, ada limit record tiap tabel
+      nanti kalau melebihi batas buatkan objek button baru, objek <li> baru yg nav item itu
+      nanti link-kan sesuai jumlah halaman, mungkin pake get juga
+      -->
         <li class="nav-item">
           <a class="nav-link active" data-toggle="pill" href="#table1">Bagian 1</a>
         </li>
@@ -78,9 +83,9 @@
                         <?php while($row2= mysqli_fetch_array($result2)) :   ?>
                           <td><?php echo $row2["id"]; ?></td>
                           <td><?php echo $row2["nama"]; ?></td>
-                          <td><?php echo $nip = $row2["nip"]; ?></td>
+                          <td><?php echo $id = $row2["nip"]; ?></td>
                         <?php #bgmana caranya link href dengan id yang bersesuaian  ?>
-                        <td><a href="penilaian.php?nip=<?php echo $nip?>">Mulai Penilaian</a></td>
+                        <td><a href="penilaian.php?nip=<?php echo $id?>">Mulai Penilaian</a></td>
                       </tr>
                       <?php endwhile; ?>
                     </tbody>
