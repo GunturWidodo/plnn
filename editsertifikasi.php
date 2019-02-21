@@ -1,5 +1,24 @@
 <?php 
-  include ('server/serverEditsertif.php');
+  $db = mysqli_connect('localhost', 'root', '', 'registration');
+  $id = $_REQUEST['id'];
+
+
+  $sql = "SELECT * FROM sertifikasi WHERE id='$id'";
+  $query = mysqli_query($db, $sql);
+  while ($row = mysqli_fetch_array($query)){
+    $nip = $row['nip'];
+    $nama = $row['nama'];
+    $jabatan = $row['jabatan'];
+    $unit = $row['unit'];
+    $kode = $row['kode_sertifikasi'];
+    $judul = $row['judul_sertifikasi'];
+    $pelaksana = $row['pelaksana'];
+    $nomor = $row['no_sertifikasi'];
+    $masa = $row['masa_berlaku'];
+    $sampai = $row['sampai_dengan'];
+  }
+
+  include  ('server/serverEditsertif.php');
 ?>
 
 <!DOCTYPE html>
