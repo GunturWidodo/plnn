@@ -226,7 +226,7 @@
               <h3>Input Data Pegawai</h3>
               <hr>
               <div class="forms">
-                <form method="post">
+                <form method="post" action="" enctype="multipart/form-data">
                   <div class="row">
                     <div class="col-5 col-sm-6 col-md-6">
                       <input type="text" name="nip" placeholder="NIP" required class="form-control input-lg" value="" />
@@ -278,26 +278,22 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-5 col-sm-6 col-md-6">
+                    <div class="col">
                       <input type="text" name="ket" placeholder="Keterangan" required class="form-control input-lg" value="" />
                     <br>
                     </div>
-                    <div class="col-5" style="margin-left: 15px">
-                        <input required="" type="file" class="custom-file-input" id="customFile" name="filename">
-                        <label class="custom-file-label" for="customFile">Upload Berkas</label>
-                    </div>
                   </div>
                   <div class="row">
-                    <div class="col-5" style="margin-left: 15px"></div><br>
-                    <div class="col-5 ml-auto">
-                      <button type="submit" name="save" class="btn btn-success">Simpan</button> 
+                    <div class="col">
+                      <input id="filename" type="text" placeholder="Pilih Berkas Sertifikasi"  class="form-control" disabled="">
+                      <input id="upload" type="file" name="myfile"> <br>
                     </div>
                   </div>
+                    <div class="col-5 ml-auto">
+                      <button type="submit" name="simpan" class="btn btn-success" style="margin-top: 10px; margin-left: 189px">Simpan</button> 
+                    </div>
                 </form>
-                <!--<form method="post" action="sertifikasi.php" enctype="multipart/form-data">
-                  <input type="file" name="myfile"> <br>
-                  <button type="submit" nxame="save">upload</button>
-                </form>-->
+                
               </div>
             </div>
           <div class="col-xl-3 col-sm-6 col-mb-3">
@@ -317,6 +313,17 @@
     </div>
 
   <script>
+    document.getElementById('upload').onchange = uploadOnChange;
+    function uploadOnChange() {
+    var filename = this.value;
+    var lastIndex = filename.lastIndexOf("\\");
+    if (lastIndex >= 0) {
+      filename = filename.substring(lastIndex + 1);
+    }
+    document.getElementById('filename').value = filename;
+  }
+
+
     $(document).ready(function () {
       $('#sidebarCollapse').on('click', function () {
           $('#sidebar').toggleClass('active');
@@ -331,5 +338,7 @@
                   //replace the "Choose a file" label
                   $(this).next('.custom-file-label').html(fileName);
     })
+
+
   </script>
 </body>
