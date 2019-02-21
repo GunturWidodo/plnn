@@ -1,8 +1,7 @@
 <?php 
   $id = $_REQUEST['nip'];
-  $kategori = "";
+  $kategori = strtoupper("");
   include('server/server.php');
-
   $sql = "SELECT * FROM users WHERE nip='$id'";
   $query = mysqli_query($db, $sql);
   while ($row = mysqli_fetch_array($query)){
@@ -71,8 +70,7 @@
         <input type="text" name="judul" placeholder="" required class="form-control" value="<?php echo ($judul); ?>" disabled="" />
         <br>
       </form>
-      <!--<a class="btn btn-info" type="submit" name="don" href="server/donlod.php" style="margin-top: 5px; margin-bottom: 10px;">Unduh Semua Berkas</a>-->
-      <button type="submit" name="don" onclick="window.location.href='server/donlod.php'" class="btn btn-primary">Unduh Semua Berkas</button>
+      <button type="submit" class="btn btn-primary">Unduh Semua Berkas</button>
     </div>
     <div class="col-xl-3 col-sm-4 col-mb-3" style="margin-left: 50px;">
       <form action="#" method="post">
@@ -90,33 +88,35 @@
         <div class="row">
           <div class="col-8">
             <label for="bobot" style="font-size: 12px; text-align: center">Bobot Lulus Seleksi Administrasi</label>
-            <input type="text" maxlength="2" name="bobotL" placeholder="" required class="form-control" value="" id="bobotL"/>
+            <input type="text" maxlength="2" name="bobotL" onKeyUp="if(this.value>20){this.value='20';}else if(this.value<0){this.value='0';}" placeholder="" required class="form-control" value="" id="bobotL"/>
           </div>
         </div>
         <br>
         <div class="row">
           <div class="col-4">
             <label for="nilaiA">A:</label>
-            <input type="text" maxlength="2" name="nilaiA" placeholder="" required class="form-control" value="" id="na" />
+            <input type="text" maxlength="2" name="nilaiA" onKeyUp="if(this.value>10){this.value='10';}else if(this.value<0){this.value='0';}" placeholder="" required class="form-control" value="" id="na" />
           </div>
           <div class="col-4">
             <label for="nilaiB">B:</label>
-            <input type="text" maxlength="2" name="nilaiB" placeholder="" required class="form-control" value="" id="nb" />
+            <input type="text" maxlength="2" name="nilaiB" onKeyUp="if(this.value>10){this.value='10';}else if(this.value<0){this.value='0';}" placeholder="" required class="form-control" value="" id="nb" />
           </div>
         </div>
         <div class="row">
           <div class="col-4">
             <label for="nilaiC">C:</label>
-            <input type="text" maxlength="2" name="nilaiC" placeholder="" required class="form-control" value="" id="nc"/>
+            <input type="text" maxlength="2" name="nilaiC" onKeyUp="if(this.value>10){this.value='10';}else if(this.value<0){this.value='0';}" placeholder="" required class="form-control" value="" id="nc"/>
           </div>
           <div class="col-4">
             <label for="nilaiD">D:</label>
-            <input type="text" maxlength="2" name="nilaiD" placeholder="" required class="form-control" value="" id="nd"/>
+            <input type="text" maxlength="2" name="nilaiD" onKeyUp="if(this.value>10){this.value='10';}else if(this.value<0){this.value='0';}" placeholder="" required class="form-control" value="" id="nd"/>
           </div>
         </div>
         <br>
         <button type="submit" name="nilai" class="btn btn-success" onclick="getVal()">Nilai</button>
       </form>
+      <!--
+        -->
     </div>
       
     <div class="col-6" style="margin-left: -50px;">
@@ -176,6 +176,9 @@
                       </tr>
                     </tbody>
                   </table>
+                  <p id="tang" class="d-flex justify-content-end" style="margin-right: 50px;"> </p> 
+                  <p class="d-flex justify-content-end" style="margin-right: 85px; margin-top: -15px">Penguji</p><br><br><br>
+                  <p class="d-flex justify-content-end" style="margin-right: 30px;">..............................................</p>
                 </div>
               </div>
             </div>
@@ -187,6 +190,14 @@
   </div>
 </div>
 <script type="text/javascript">
+  var bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+  var tanggal = new Date().getDate();
+  var _bulan = new Date().getMonth();
+  var _tahun = new Date().getYear();
+  var bulan = bulan[_bulan];
+  var tahun = (_tahun < 1000) ? _tahun + 1900 : _tahun;
+  document.getElementById("tang").innerHTML = tanggal +' ' + bulan + ' ' + tahun;
+
   var tableToExcel = (function() {
   var uri = 'data:application/vnd.ms-excel;base64,'
     , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
@@ -197,7 +208,7 @@
     var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
     window.location.href = uri + base64(format(template, ctx))
   }
-})()
+})
 </script>
 </body>
 </html>
