@@ -82,30 +82,28 @@
   <!-- Bagian Upload -->
       <h3>Upload Berkas</h3>
       <hr>
+      <form method="post" action="server/upload.php" enctype="multipart/form-data">
       <div class="row">
         <div class="col">
-          <form method="post" action="server/uploadBerkas.php" enctype="multipart/form-data">
-            <h5>Berkas 1 
-              <?php 
-              $query = mysqli_query($db, $sql);
-              while ($row = mysqli_fetch_array($query)) {
-                if (!empty($row['berkas1'])) {
-                  echo '<i class="fas fa-check" style="color: #1ae03f;"></i>';
-                } else {
-                  echo " ";
-                }
+          <h5>Berkas 1 
+          <?php 
+            $query = mysqli_query($db, $sql);
+            while ($row = mysqli_fetch_array($query)) {
+              if (!empty($row['berkas1'])) {
+                echo '<i class="fas fa-check" style="color: #1ae03f;"></i>';
+              } else {
+                echo " ";
               }
-              ?>
-            </h5>
-            <input id="filename" type="text" class="form-control" disabled="">
-            <input style="padding:10px 0" id="upload" type="file" name="myfile"> <br>
-            <button class="btn btn-info" type="submit" name="save">Upload</button>
-          </form>
+            }
+          ?>
+          </h5>
+          <input id="filename" type="text" class="form-control" disabled="">
+          <input style="padding:10px 0" id="upload" type="file" name="myfile[]"> <br>
         </div>
         <hr>
         <div class="col">
           <h5>Berkas 2 
-              <?php 
+            <?php 
               $query = mysqli_query($db, $sql);
               while ($row = mysqli_fetch_array($query)) {
                 $berkas22 = $row['berkas2'];
@@ -115,40 +113,34 @@
                   echo " ";
                 }
               }
-             ?>
-             </h5>
-          <form method="post" action="server/uploadBerkas.php" enctype="multipart/form-data">
-            <input id="filename2" type="text" class="form-control" disabled="">
-            <input style="padding:10px 0" id="upload2" type="file" name="myfile"> <br>
-            <button class="btn btn-info" type="submit" name="save2">Upload</button>
-          </form>
+            ?>
+          </h5>
+          <input id="filename2" type="text" class="form-control" disabled="">
+          <input style="padding:10px 0" id="upload2" type="file" name="myfile[]"> <br>
         </div>
       </div>
       <hr>
       <div class="row">
         <div class="col">
-        <h5>Berkas 3 
+          <h5>Berkas 3 
             <?php 
-            $query = mysqli_query($db, $sql);
-            while ($row = mysqli_fetch_array($query)) {
-              if (!empty($row['berkas3'])) {
-                echo '<i class="fas fa-check" style="color: #1ae03f;"></i>';
-              } else {
-                echo " ";
+              $query = mysqli_query($db, $sql);
+              while ($row = mysqli_fetch_array($query)) {
+                if (!empty($row['berkas3'])) {
+                  echo '<i class="fas fa-check" style="color: #1ae03f;"></i>';
+                } else {
+                  echo " ";
+                }
               }
-            }
-           ?>
-        </h5>
-          <form method="post" action="server/uploadBerkas.php" enctype="multipart/form-data">
-            <input id="filename3" type="text"  class="form-control" disabled="">
-            <input style="padding:10px 0" id="upload3" type="file" name="myfile"> <br>
-            <button class="btn btn-info" type="submit" name="save3">Upload</button>
-          </form>
+            ?>
+          </h5>
+          <input id="filename3" type="text"  class="form-control" disabled="">
+          <input style="padding:10px 0" id="upload3" type="file" name="myfile[]"> <br>
         </div>
         <hr>
         <div class="col">
           <h5>CV 
-              <?php 
+            <?php 
               $query = mysqli_query($db, $sql);
               while ($row = mysqli_fetch_array($query)) {
                 if (!empty($row['cv'])) {
@@ -157,40 +149,18 @@
                   echo " ";
                 }
               }
-             ?>
+            ?>
           </h5>
-          <form method="post" action="server/uploadBerkas.php" enctype="multipart/form-data">
-            <input id="filename4" type="text"  class="form-control" disabled="">
-            <input style="padding:10px 0" id="upload4" type="file" name="myfile"> <br>
-            <button class="btn btn-info" type="submit" name="save4" style="margin-bottom: 50px;">Upload</button>
-          </form>
+          <input id="filename4" type="text"  class="form-control" disabled="">
+          <input style="padding:10px 0" id="upload4" type="file" name="myfile[]"> <br>
+          <button class="btn btn-info" type="submit" name="save">Upload semua berkas</button>
         </div>
       </div>
+    </form>
       <hr>
       <div class="row">
         <div class="col">
-        <h5>Berkas 3 
-            <?php 
-            $query = mysqli_query($db, $sql);
-            while ($row = mysqli_fetch_array($query)) {
-              if (!empty($row['berkas3'])) {
-                echo '<i class="fas fa-check" style="color: #1ae03f;"></i>';
-              } else {
-                echo " ";
-              }
-            }
-           ?>
-        </h5>
-          <form method="post" action="server/uploadBerkas3.php" enctype="multipart/form-data">
-            <input id="filename3" type="text"  class="form-control" disabled="">
-            <input style="padding:10px 0" id="upload3" type="file" name="myfile"> <br>
-            <button class="btn btn-info" type="submit" name="save3">Upload</button>
-          </form>
-        </div>
-        <div class="col">
-          <h5>haaaaaaaa</h5>
-          <form action="server/uplod.php" method="post" enctype="multipart/form-data">ssssssss</form>
-
+          <h5></h5>          
         </div>
       </div>
     </div>
