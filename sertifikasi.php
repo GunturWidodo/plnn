@@ -291,9 +291,11 @@
                       <input id="upload" type="file" name="myfile"> <br>
                     </div>
                   </div>
-                    <div class="col-5 ml-auto">
-                      <button type="submit" name="simpan" class="btn btn-success" style="margin-top: 10px; margin-left: 189px">Simpan</button> 
+                  <div class="row">
+                    <div class="col-5">
+                      <button type="submit" name="simpan" class="btn btn-success">Simpan</button> 
                     </div>
+                  </div>
                 </form>
                 
               </div>
