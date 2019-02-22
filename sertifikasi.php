@@ -1,5 +1,4 @@
 <?php 
-  include('server/upload.php');
   include('server/server.php');
   include('server/serverlogin.php');
   if (!isset($_SESSION["admin"])) {
@@ -14,6 +13,7 @@
     printf("Error: %s\n", mysqli_error($db));
     exit();
   }
+  include ('server/download.php');
  ?>
 
 <!DOCTYPE html>
@@ -141,6 +141,7 @@
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Masa Berlaku</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">s/d</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Keterangan</th>
+                        <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Edit</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Download</th>
                       </tr>
                     </thead>
@@ -151,7 +152,7 @@
                       ?>
                       <tr class="odd" role= "row">
                         <td><?php echo $id = $row1["id"]; ?></td>
-                        <td><?php echo $row1["nip"]; ?></td>
+                        <td><?php echo $nip = $row1["nip"]; ?></td>
                         <td><?php echo $row1["nama"]; ?></td>
                         <td><?php echo $row1["jabatan"]; ?></td>
                         <td><?php echo $row1["unit"]; ?></td>
@@ -163,6 +164,7 @@
                         <td><?php echo $row1["sampai_dengan"]; ?></td>
                         <td><?php echo $row1["keterangan"]; ?></td>
                         <td><a href="editsertifikasi.php?id=<?php echo $id?>">Edit</a></td>
+                        <td><a href="sertifikasi.php?file=<?php echo $row1["download"] ?>"><?php echo $row1["download"] ?></a></td>
                       </tr>
                       <?php endwhile; ?>
                     </tbody>                      

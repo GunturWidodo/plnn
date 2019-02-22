@@ -103,7 +103,7 @@
               <h3>Edit Data Pegawai</h3>
               <hr>
               <div class="forms">
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                   <div class="row">
                     <div class="col-5 col-sm-6 col-md-6">
                       <label for="nip">NIP :</label>
@@ -154,7 +154,7 @@
                   </div>
                   <div class="row">
                     <div class="col-5 col-sm-6 col-md-6">
-                      <label for="masa">Masa Beerlaku Dari :</label>
+                      <label for="masa">Masa Berlaku Dari :</label>
                       <input type="text" name="dari" placeholder="Masa Berlaku Dari" required class="form-control input-lg" value="<?php echo $masa ?>" />
                     <br>
                     </div>
@@ -166,17 +166,15 @@
                   </div>
                   <div class="row">
                     <div class="col-5 col-sm-6 col-md-6">
-                    <form>
-                      <div class="input-group mb-3">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="inputGroupFile02"/>
-                            <label class="custom-file-label" for="inputGroupFile02">Berkas Sertifikasi</label>
-                        </div>
-                      </div>
-                      
-                      <button type="submit" class="btn btn-primary" name="simpan">Simpan</button>
-                    </form>
+                      <button type="submit" class="btn btn-primary" name="simpan" style="margin-top: 10px">Simpan</button>
                     </div>
+                    </div>
+                    <br>
+                  </div>
+                  <div class="col">
+                    <input id="filename" type="text" placeholder="Pilih Berkas Sertifikasi"  class="form-control" disabled="">
+                      <input id="upload" type="file" name="myfile"> <br>
+                    <button type="submit" class="btn btn-primary" name="upload" style="margin-top: 10px">Upload</button>
                   </div>
                 </form>
     </div>
@@ -184,6 +182,17 @@
 </div>   
 </body>
 <script>
+
+  document.getElementById('upload').onchange = uploadOnChange;
+    function uploadOnChange() {
+    var filename = this.value;
+    var lastIndex = filename.lastIndexOf("\\");
+    if (lastIndex >= 0) {
+      filename = filename.substring(lastIndex + 1);
+    }
+    document.getElementById('filename').value = filename;
+  }
+
   $(document).ready(function () {
 
     $('#sidebarCollapse').on('click', function () {

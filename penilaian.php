@@ -1,5 +1,7 @@
 <?php 
+  session_start();
   $id = $_REQUEST['nip'];
+  $_SESSION["login_user"] = $id;
   $kategori = strtoupper("");
   include('server/server.php');
   $sql = "SELECT * FROM users WHERE nip='$id'";
@@ -70,7 +72,7 @@
         <input type="text" name="judul" placeholder="" required class="form-control" value="<?php echo ($judul); ?>" disabled="" />
         <br>
       </form>
-      <button type="submit" class="btn btn-primary">Unduh Semua Berkas</button>
+      <a href="server/donlod.php"><button type="submit" class="btn btn-primary">Unduh Semua Berkas</button></a>
     </div>
     <div class="col-xl-3 col-sm-4 col-mb-3" style="margin-left: 50px;">
       <form action="#" method="post">
