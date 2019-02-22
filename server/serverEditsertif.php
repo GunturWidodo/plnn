@@ -33,4 +33,19 @@
 			die(mysqli_error($db));
 		}
 	}
+
+	if (isset($_POST['upload'])){
+		$filename1 = $_FILES['myfile']['name'];
+		$filename = rand().$filename1;
+
+		if(!file_exists("upload/sertifikat/" . $nip . "/")){
+        mkdir("upload/sertifikat/" . $nip . "/");
+    }
+		$destination = 'upload/sertifikat/' . $nip . "/" . $filename;
+
+		if(move_uploaded_file($_FILES["myfile"]["tmp_name"], $destination)){
+		$sql = "UPDATE sertifikasi SET download = '$filename' WHERE nip = '$nip'";
+		mysqli_query($db, $sql);
+		}
+	}
 ?>
