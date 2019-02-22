@@ -299,15 +299,7 @@
               </div>
             </div>
           <div class="col-xl-3 col-sm-6 col-mb-3">
-            <h3>Import File Excel</h3>
-            <hr>
-              <div class="custom-file mb-3">
-                <form method="POST" action="server/import.php" enctype="multipart/form-data">
-                  <input class="costume-file-input" type="file" name="file" id="costumefileUp">
-                  <br><br>
-                  <button type="submit" name="Import" class="btn btn-primary">UPLOAD</button>
-                </form>
-              </div>            
+                    
           </div>
         </div>
         </div>
