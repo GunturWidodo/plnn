@@ -1,4 +1,5 @@
 <?php 
+  include ('server/download.php');
   include('server/server.php');
   include('server/serverlogin.php');
   if (!isset($_SESSION["admin"])) {
@@ -13,7 +14,7 @@
     printf("Error: %s\n", mysqli_error($db));
     exit();
   }
-  include ('server/download.php');
+  
  ?>
 
 <!DOCTYPE html>
@@ -89,15 +90,16 @@
         <ol class="breadcrumb shadow-nohover">
           <li class="breadcrumb-item"><a href="admin.php">Admin</a></li>
           <li class="breadcrumb-item"><a href="sertiffront.php">Info Sertifikasi</a></li>
-          <li class="breadcrumb-item">Sertifikasi</li>
+          <li class="breadcrumb-item">Sertifikasi</li>\
         </ol>
       </div>
         <div class="card mb-3">
           <div class="card-header">
             <i class="fas fa-table"></i>
             Sertifikasi
+            <div class="d-flex justify-content-end" style="margin-top: -25px;"><a class="btn btn-info ml-auto" href="server/exportSertifikasi.php" role="button"  >Eksport Tabel</a></div>
             <div class="d-flex justify-content-end">
-              <button class="btn btn-primary" role="button" onclick="jumpScroll()" value="Scroll Page">Tambah Data</button>
+              <button class="btn btn-primary" role="button" onclick="jumpScroll()" value="Scroll Page" style="margin-top: 5px">Tambah Data</button>
             </div>
           </div>
         <div class="card-body">
@@ -164,7 +166,7 @@
                         <td><?php echo $row1["sampai_dengan"]; ?></td>
                         <td><?php echo $row1["keterangan"]; ?></td>
                         <td><a href="editsertifikasi.php?id=<?php echo $id?>">Edit</a></td>
-                        <td><a href="sertifikasi.php?file=<?php echo $row1["download"] ?>"><?php echo $row1["download"] ?></a></td>
+                        <td><a href="Sertifikasi.php?file=<?php echo $row1["download"] ?>"><?php echo $row1["download"] ?></a></td>
                       </tr>
                       <?php endwhile; ?>
                     </tbody>                      
@@ -291,11 +293,9 @@
                       <input id="upload" type="file" name="myfile"> <br>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-5">
-                      <button type="submit" name="simpan" class="btn btn-success">Simpan</button> 
+                    <div class="col-5 ml-auto">
+                      <button type="submit" name="simpan" class="btn btn-success" style="margin-top: 10px; margin-left: 189px">Simpan</button> 
                     </div>
-                  </div>
                 </form>
                 
               </div>
