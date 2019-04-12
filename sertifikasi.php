@@ -1,5 +1,4 @@
 <?php 
-  include ('server/download.php');
   include('server/server.php');
   include('server/serverlogin.php');
   if (!isset($_SESSION["admin"])) {
@@ -90,7 +89,7 @@
         <ol class="breadcrumb shadow-nohover">
           <li class="breadcrumb-item"><a href="admin.php">Admin</a></li>
           <li class="breadcrumb-item"><a href="sertiffront.php">Info Sertifikasi</a></li>
-          <li class="breadcrumb-item">Sertifikasi</li>\
+          <li class="breadcrumb-item">Sertifikasi</li>
         </ol>
       </div>
         <div class="card mb-3">
@@ -141,7 +140,7 @@
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Pelaksana</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">No Sertifikat</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Masa Berlaku</th>
-                        <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">s/d</th>
+                        <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Expired</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Keterangan</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Edit</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Download</th>
@@ -166,7 +165,7 @@
                         <td><?php echo $row1["sampai_dengan"]; ?></td>
                         <td><?php echo $row1["keterangan"]; ?></td>
                         <td><a href="editsertifikasi.php?id=<?php echo $id?>">Edit</a></td>
-                        <td><a href="Sertifikasi.php?file=<?php echo $row1["download"] ?>"><?php echo $row1["download"] ?></a></td>
+                        <td><a href="server/download.php?file=<?php echo $row1["download"] ?>"><?php echo $row1["download"] ?></a></td>
                       </tr>
                       <?php endwhile; ?>
                     </tbody>                      
