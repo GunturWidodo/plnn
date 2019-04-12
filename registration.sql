@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2019 at 10:52 AM
+-- Generation Time: Apr 12, 2019 at 07:54 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `sertifikasi` (
-  `id` int(11) NOT NULL,
+  `id` int(255) NOT NULL,
   `nip` varchar(255) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `jabatan` varchar(255) NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE `sertifikasi` (
 --
 
 INSERT INTO `sertifikasi` (`id`, `nip`, `nama`, `jabatan`, `unit`, `kode_sertifikasi`, `judul_sertifikasi`, `pelaksana`, `no_sertifikasi`, `masa_berlaku`, `sampai_dengan`, `keterangan`, `download`) VALUES
-(1, '6285101F', 'M ANWAR', 'ASSISTANT ANALYST KINERJA', 'Area Parepare', 'KTL.DOP.23.302.I1.2013', 'Pelaksanaan Pekerjaan Administrasi P2TL', 'BNSP USER', 'BA BNSP User tgl 04 Oktober 2017', 'Menunggu sertifikat dikirim', 'Menunggu sertifikat dikirim', '', '382404948database.png'),
+(1, '6285101F', 'M ANWAR', 'ASSISTANT ANALYST KINERJA', 'Area Parepare', 'KTL.DOP.23.302.I1.2013', 'Pelaksanaan Pekerjaan Administrasi P2TL', 'BNSP USER', 'BA BNSP User tgl 04 Oktober 2017', 'Menunggu sertifikat dikirim', 'Menunggu sertifikat dikirim', '', ''),
 (2, '6287100F', 'BASENG ', 'ANALYST KINERJA DAN SISTEM MANAJEMEN', 'Area Makassar Utara', 'KTL.DOP.23.303.I1.2013', 'Melaksanakan Pekerjaan Lapangan P2TL', 'LSP USER ', '40103 3113 0001037 2017', '27/11/2017', '27/11/2020', 'ada arsip', ''),
 (3, '6384099F', 'FAISAL', 'ANALYST KINERJA', 'Area Palopo', 'D.35.134.00.002.1', 'Melaksanakan Pengawasan Pengoperasian Distribusi Tenaga Listrik', 'GEMAPEDEKABE', '050/D-4/IX/GPDKB-PST/2018', 'Menunggu sertifikat dikirim', 'Menunggu sertifikat dikirim', '', ''),
 (4, '6384132F', 'H.SAHABUDDIN,SE', 'ANALYST KINERJA DAN SISTEM MANAJEMEN', 'Area Parepare', 'KTL.DOP.23.302.I1.2013', 'Pelaksanaan Pekerjaan Administrasi P2TL level 3', 'BNSP USER', 'BA BNSP User tgl 04 Oktober 2017', 'Menunggu sertifikat dikirim', 'Menunggu sertifikat dikirim', '', ''),
@@ -845,19 +845,15 @@ INSERT INTO `sertifikasi` (`id`, `nip`, `nama`, `jabatan`, `unit`, `kode_sertifi
 (790, '9716034FY', 'MUHAMMAD ANSHORUDDIN LASADA', 'JUNIOR TECHNICIAN PEMELIHARAAN DISTRIBUSI', 'Area Makassar Utara', 'D.35.134.01.006.1', 'Melaksanakan Pengoperasian Gardu Distribusi', 'GEMAPEDEKABE', '5079.0.04.DTM2.10.2018', '04-Okt-18', '03-Okt-21', '', ''),
 (791, '9716037FY', 'YUSUF SAPUTRA', 'JUNIOR OPERATOR OPERASI DISTRIBUSI', 'Area Makassar Utara', 'DIS.OPS.009(2). B', 'Mengoperasikan SKTM baru', 'IATKI', 'D737.0.03.D042.12.2017', '15-Des-17', '15-Des-20', 'ada arsip', ''),
 (792, '9716037FY', 'YUSUF SAPUTRA', 'JUNIOR OPERATOR OPERASI DISTRIBUSI', 'Area Makassar Utara', 'DIS.OPS.010(2).B', 'Melokalisir Gangguan pada SKTM', 'IATKI', 'D742.0.03.D042.12.2017', '15-Des-17', '15-Des-20', 'ada arsip', ''),
-(793, '9716040FY', 'LAODE MULFI ILMAN ', 'JUNIOR TECHNICIAN PEMELIHARAAN DISTRIBUSI', 'Area Makassar Utara', 'DIS.HAR.011(1).B', 'Memelihara hantaran saluran udara tegangan menengah (SUTM)', 'IATKI', 'D850.0.03.D051.12.2017', '22-Des-17', '22-Des-20', 'ada arsip', '727293420database.png'),
-(794, '9716040FY', 'LAODE MULFI ILMAN ', 'JUNIOR TECHNICIAN PEMELIHARAAN DISTRIBUSI', 'Area Makassar Utara', 'DIS.HAR.024(2).B', 'Memelihara Instalasi Gardu Tiang ', 'IATKI', 'D852.0.03.D052.12.2017', '22-Des-17', '22-Des-20', 'ada arsip', '727293420database.png'),
+(793, '9716040FY', 'LAODE MULFI ILMAN ', 'JUNIOR TECHNICIAN PEMELIHARAAN DISTRIBUSI', 'Area Makassar Utara', 'DIS.HAR.011(1).B', 'Memelihara hantaran saluran udara tegangan menengah (SUTM)', 'IATKI', 'D850.0.03.D051.12.2017', '22-Des-17', '22-Des-20', 'ada arsip', ''),
+(794, '9716040FY', 'LAODE MULFI ILMAN ', 'JUNIOR TECHNICIAN PEMELIHARAAN DISTRIBUSI', 'Area Makassar Utara', 'DIS.HAR.024(2).B', 'Memelihara Instalasi Gardu Tiang ', 'IATKI', 'D852.0.03.D052.12.2017', '22-Des-17', '22-Des-20', 'ada arsip', ''),
 (795, '9716041FY', 'YUDHA BYATARA SWANIDA', 'JUNIOR OPERATOR OPERASI DISTRIBUSI', 'Area Makassar Utara', 'DIS.OPS.011(2).B', 'Mengoperasikan SUTM baru', 'IATKI', 'D822.0.03.D042.12.2017', '22-Des-17', '22-Des-20', 'ada arsip', ''),
 (796, '9716041FY', 'YUDHA BYATARA SWANIDA', 'JUNIOR OPERATOR OPERASI DISTRIBUSI', 'Area Makassar Utara', 'DIS.OPS.019(2).B', 'Mengoperasikan instalasi trafo distribusi dan PHB-TR pada gardu tiang kedalam sistem distribusi ', 'IATKI', 'D830.0.03.D042.12.2017', '22-Des-17', '22-Des-20', 'ada arsip', ''),
 (797, '9716045FY', 'AGUSTI BUDIARTO', 'JUNIOR OPERATOR OPERASI DISTRIBUSI', 'Area Makassar Utara', 'DIS.OPS. 010(2).B', 'Melokalisir Gangguan pada SKTM', 'IATKI', 'D814.0.03.D042.12.2017', '22-Des-17', '22-Des-20', 'ada arsip', ''),
 (798, '9716045FY', 'AGUSTI BUDIARTO', 'JUNIOR OPERATOR OPERASI DISTRIBUSI', 'Area Makassar Utara', 'DIS.OPS.009(2). B', 'Mengoperasikan SKTM baru', 'IATKI', 'D813.0.03.D042.12.2017', '22-Des-17', '22-Des-20', 'ada arsip', ''),
 (799, '9717076FBY', 'MUHAMMAD ISLAH FADHIL', 'JUNIOR TECHNICIAN TEKNISI PDKB', 'Area Mamuju', 'D.35.135.01.045.1', 'Melaksanakan Penggantian Jumper SUTM dengan Metode PDKB Berjarak', 'BNSP USER', '        .BA/SDM.03.02/LSP-USER-PLN/2018', 'Menunggu sertifikat dikirim', 'Menunggu sertifikat dikirim', '', ''),
-(800, '7293012F', 'KAMARUDDIN DILU', 'PEJABAT PELAKSANA PENGADAAN', 'Kantor Wilayah Sulselrabar', 'KTL.HKM.PBJ.2.1.3.01.I1.2014', 'MERENCANAKAN PROSES PENGADAAN BARANG/ JASA', 'BNSP USER', '01.HKM.PBJ.18.0204.0', '26-Jun-18', '25-Jun-21', '', '1089490070database.png'),
-(801, '7293012F', 'KAMARUDDIN DILU', 'PEJABAT PELAKSANA PENGADAAN', 'Kantor Wilayah Sulselrabar', 'KTL.HKM.PBJ.2.2.3.02.I1.2014', 'MELAKSANAKAN PROSES PENGADAAN BARANG/ JASA', 'BNSP USER', '01.HKM.PBJ.18.0204.0', '26-Jun-18', '25-Jun-21', '', '869019155members.xls'),
-(802, 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', '974238718database.png'),
-(803, 'huhu', 'huh', 'uh', 'uhu', 'hu', 'hu', 'hu', 'hu', 'hu', 'hu', 'huh', '1442442422manager.png'),
-(804, 's', 's', 's', 's', 's', 's', 's', 's', 's', 'lplplplp', 's', '1078598816a5yaylpl.xls'),
-(805, 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', '1878460188members.xls');
+(800, '7293012F', 'KAMARUDDIN DILU', 'PEJABAT PELAKSANA PENGADAAN', 'Kantor Wilayah Sulselrabar', 'KTL.HKM.PBJ.2.1.3.01.I1.2014', 'MERENCANAKAN PROSES PENGADAAN BARANG/ JASA', 'BNSP USER', '01.HKM.PBJ.18.0204.0', '26-Jun-18', '25-Jun-21', '', ''),
+(801, '7293012F', 'KAMARUDDIN DILU', 'PEJABAT PELAKSANA PENGADAAN', 'Kantor Wilayah Sulselrabar', 'KTL.HKM.PBJ.2.2.3.02.I1.2014', 'MELAKSANAKAN PROSES PENGADAAN BARANG/ JASA', 'BNSP USER', '01.HKM.PBJ.18.0204.0', '26-Jun-18', '25-Jun-21', '', '');
 
 -- --------------------------------------------------------
 
@@ -932,7 +928,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `sertifikasi`
 --
 ALTER TABLE `sertifikasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=806;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=805;
 
 --
 -- AUTO_INCREMENT for table `users`
