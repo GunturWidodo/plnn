@@ -38,13 +38,13 @@
 		$filename1 = $_FILES['myfile']['name'];
 		$filename = rand().$filename1;
 
-		if(!file_exists("upload/sertifikat/" . $nip . "/")){
-        mkdir("upload/sertifikat/" . $nip . "/");
+		if(!file_exists("upload/sertifikat/" . $nip . $judul . "/")){
+        mkdir("upload/sertifikat/" . $nip . $judul . "/");
     }
-		$destination = 'upload/sertifikat/' . $nip . "/" . $filename;
+		$destination = 'upload/sertifikat/' . $nip . $judul . "/" . $filename;
 
 		if(move_uploaded_file($_FILES["myfile"]["tmp_name"], $destination)){
-		$sql = "UPDATE sertifikasi SET download = '$filename' WHERE nip = '$nip'";
+		$sql = "UPDATE sertifikasi SET download = '$filename' WHERE id = '$id'";
 		mysqli_query($db, $sql);
 		}
 	}
