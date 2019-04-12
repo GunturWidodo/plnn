@@ -38,10 +38,10 @@
 		$filename1 = $_FILES['myfile']['name'];
 		$filename = rand().$filename1;
 
-		if(!file_exists("upload/sertifikat/" . $nip . $judul . "/")){
-        mkdir("upload/sertifikat/" . $nip . $judul . "/");
+		if(!file_exists("upload/sertifikat/" . $nip . $kode . "/")){
+        mkdir("upload/sertifikat/" . $nip . $kode . "/");
     }
-		$destination = 'upload/sertifikat/' . $nip . $judul . "/" . $filename;
+		$destination = 'upload/sertifikat/' . $nip . $kode . "/" . $filename;
 
 		if(move_uploaded_file($_FILES["myfile"]["tmp_name"], $destination)){
 		$sql = "UPDATE sertifikasi SET download = '$filename' WHERE id = '$id'";

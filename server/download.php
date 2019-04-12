@@ -8,14 +8,14 @@ if(!empty($_GET['file'])){
     $query = mysqli_query($db, $sql);
     $row = mysqli_fetch_array($query);
     $nip = $row['nip'];
-    $judul = $row['judul_sertifikasi'];
+    $kode = $row['kode_sertifikasi'];
 
-    $filePath = '../upload/sertifikat/' . $nip . $judul . "/" .$fileName;
+    $filePath = '../upload/sertifikat/' . $nip . $kode . "/" .$fileName;
 
     if(!empty($fileName) && file_exists($filePath)){
         // Define headers
         header("Content-Description: File Transfer");
-        header("Content-Disposition: attachment; filename=$fileName");
+        header("Content-Disposition: attachment; filename=\"${fileName}\"");
         header("Content-Type: octet/stream");
         header("Content-Transfer-Encoding: binary");
         
