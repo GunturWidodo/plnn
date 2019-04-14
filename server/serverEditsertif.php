@@ -46,6 +46,7 @@
 		if(move_uploaded_file($_FILES["myfile"]["tmp_name"], $destination)){
 		$sql = "UPDATE sertifikasi SET download = '$filename' WHERE id = '$id'";
 		mysqli_query($db, $sql);
+		header('location: sertifikasi.php');
 		}
 	}
 ?>

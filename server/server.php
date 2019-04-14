@@ -42,20 +42,11 @@
 		$dari = mysqli_real_escape_string($db, $_POST['dari']);
 		$sampai = mysqli_real_escape_string($db, $_POST['sampai']);
 		$ket = mysqli_real_escape_string($db, $_POST['ket']);
-		$filename1 = $_FILES['myfile']['name'];
-		$filename = rand().$filename1;
 
-		if(!file_exists("upload/sertifikat/" . $nip . $kode . "/")){
-        mkdir("upload/sertifikat/" . $nip . $kode . "/");
-    }
-		$destination = 'upload/sertifikat/' . $nip . $kode . "/". $filename;
-
-		if(move_uploaded_file($_FILES["myfile"]["tmp_name"], $destination)){
-		$sql = "INSERT INTO sertifikasi (nip, nama, jabatan, unit, kode_sertifikasi, judul_sertifikasi, pelaksana, no_sertifikasi, masa_berlaku, sampai_dengan, keterangan, download) VALUES ('$nip', '$nama', '$jabatan', '$unit', '$kode', '$judul', '$pelaksana', '$nomor', '$dari', '$sampai', '$ket', '$filename')";
+		$sql = "INSERT INTO sertifikasi (nip, nama, jabatan, unit, kode_sertifikasi, judul_sertifikasi, pelaksana, no_sertifikasi, masa_berlaku, sampai_dengan, keterangan) VALUES ('$nip', '$nama', '$jabatan', '$unit', '$kode', '$judul', '$pelaksana', '$nomor', '$dari', '$sampai', '$ket')";
 		mysqli_query($db, $sql);
-		}
 		#header('location: ./sertifikasi.php');	
-	}
+    }
 
 	if (isset($_POST['nilai'])) {
 		$kategori = mysqli_real_escape_string($db, $_POST['kategori']);
