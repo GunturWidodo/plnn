@@ -1,5 +1,6 @@
 <?php 
   include('server/server.php');
+  include('server/import2.php');
   include('server/serverlogin.php');
   if (!isset($_SESSION["admin"])) {
     header('location: login.php');
@@ -142,8 +143,9 @@
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Masa Berlaku</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Expired</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Keterangan</th>
-                        <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Edit</th>
                         <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Download</th>
+                        <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Edit</th>
+                        <th class="sortting_asc" tabindex="0" rowspan="1" colspan="1">Hapus</th>
                       </tr>
                     </thead>
                     <tbody style="text-align: center;">
@@ -164,8 +166,9 @@
                         <td><?php echo $row1["masa_berlaku"]; ?></td>
                         <td><?php echo $row1["sampai_dengan"]; ?></td>
                         <td><?php echo $row1["keterangan"]; ?></td>
-                        <td><a href="editsertifikasi.php?id=<?php echo $id?>">Edit</a></td>
                         <td><a href="server/download.php?file=<?php echo $row1["download"] ?>"><?php echo $row1["download"] ?></a></td>
+                        <td><a href="editsertifikasi.php?id=<?php echo $id?>">Edit</a></td>
+                        <td><a href="server/delete.php?id=<?php echo $id?>">Hapus</a></td>
                       </tr>
                       <?php endwhile; ?>
                     </tbody>                      
@@ -300,7 +303,21 @@
               </div>
             </div>
           <div class="col-xl-3 col-sm-6 col-mb-3">
-                    
+            <h3>Input Data Pegawai</h3>
+            <hr>
+            <h4>Cara import file</h4>
+            <ol>
+              <li>Ubah file .xlsx/.xls (excel) menjadi file csv</li>
+              <li>Hilangkan row pertama pada tabel yang berisi header (nip, nama, jabatan, dst) bila ada</li>
+              <li>Browse file csv yang akan di upload</li>
+              <li>Maksimum row yang dapat di import adalah 110 row</li>
+            </ol>
+            <div class="col">
+              <form method="post" action="" enctype="multipart/form-data">
+                <input id="upload" type="file" name="file"> <br>
+                <button type="submit" name="import" class="btn btn-success" style="margin-top: 10px; margin-left: 189px">Import</button> 
+              </form>
+            </div> 
           </div>
         </div>
         </div>
@@ -308,8 +325,8 @@
     </div>
 
   <script>
-    document.getElementById('upload').onchange = uploadOnChange;
-    function uploadOnChange() {
+  document.getElementById('upload').onchange = uploadOnChange;
+  function uploadOnChange() {
     var filename = this.value;
     var lastIndex = filename.lastIndexOf("\\");
     if (lastIndex >= 0) {
@@ -317,7 +334,6 @@
     }
     document.getElementById('filename').value = filename;
   }
-
 
     $(document).ready(function () {
       $('#sidebarCollapse').on('click', function () {
