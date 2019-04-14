@@ -289,15 +289,11 @@
                     <br>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col">
-                      <input id="filename" type="text" placeholder="Pilih Berkas Sertifikasi"  class="form-control" disabled="">
-                      <input id="upload" type="file" name="myfile"> <br>
-                    </div>
-                  </div>
                     <div class="col-5 ml-auto">
-                      <button type="submit" name="simpan" class="btn btn-success" style="margin-top: 10px; margin-left: 189px">Simpan</button> 
+                      <button type="submit" name="simpan" class="btn btn-success" style="margin-top: 10px; margin-left: -410px">Simpan</button> 
                     </div>
+                    <br>
+                    <h5>Gunakan fitur edit pada tabel diatas untuk mengupload berkas sertifikasi</h4>
                 </form>
                 
               </div>
